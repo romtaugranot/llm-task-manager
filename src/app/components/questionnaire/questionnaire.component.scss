@@ -5,11 +5,15 @@
     padding: 48px;
     width: 100%;
     min-width: 700px;
+    max-width: 800px;
     box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-family: inherit;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 50px;
 }
 
 .progress-container {
@@ -155,10 +159,15 @@
     cursor: not-allowed;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    .questionnaire-container {
+        padding-top: 70px;
+    }
+
     .questionnaire-card {
         padding: 32px 24px;
-        min-width: 450px;
+        min-width: 0;
+        max-width: 100%;
     }
 
     .question-title {
@@ -182,10 +191,19 @@
     .nav-btn {
         flex: 1;
         padding: 14px;
+        min-width: 0;
     }
 
     .progress-text {
         text-align: center;
         min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .questionnaire-container {
+        padding-top: 65px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }

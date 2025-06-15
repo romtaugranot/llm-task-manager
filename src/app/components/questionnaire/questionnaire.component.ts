@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { GET_STARTED_QUESTIONS, Question } from '../../shared';
+import { GET_STARTED_QUESTIONS, Question, NavbarComponent } from '../../shared';
 
 @Component({
     selector: 'app-questionnaire',
-    imports: [CommonModule],
+    imports: [CommonModule, NavbarComponent],
     templateUrl: './questionnaire.component.html',
     styleUrl: './questionnaire.component.scss',
 })
