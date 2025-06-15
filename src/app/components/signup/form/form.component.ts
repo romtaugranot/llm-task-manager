@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login-form',
@@ -13,6 +14,7 @@ export class SignUpFormComponent implements OnInit {
     showPassword = false;
     isLoading = false;
 
+    router = inject(Router);
     formBuilder = inject(FormBuilder);
 
     ngOnInit(): void {
@@ -40,7 +42,8 @@ export class SignUpFormComponent implements OnInit {
             setTimeout(() => {
                 console.log('Form submitted:', this.loginForm.value);
                 this.isLoading = false;
-                // Handle successful registration
+
+                this.router.navigate(['/get-started']);
             }, 2000);
         } else {
             // Mark all fields as touched to show validation errors

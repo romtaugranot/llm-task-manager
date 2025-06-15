@@ -7,6 +7,13 @@ export const routes: Routes = [
         redirectTo: 'signup',
     },
     {
+        path: 'get-started',
+        loadComponent: () =>
+            import('./components/questionnaire/questionnaire.component').then(
+                (m) => m.QuestionnaireComponent
+            ),
+    },
+    {
         path: 'login',
         loadComponent: () =>
             import('./components/login/login.component').then((m) => m.LoginComponent),

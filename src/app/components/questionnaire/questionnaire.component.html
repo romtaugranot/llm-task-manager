@@ -1,0 +1,38 @@
+<div class="questionnaire-card">
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="progress"></div>
+        </div>
+        <span class="progress-text">{{ currentQuestionIndex + 1 }} of {{ questions.length }}</span>
+    </div>
+
+    <div class="question-container">
+        <h1 class="question-title">{{ currentQuestion.title }}</h1>
+
+        <div class="options-container">
+            <button
+                *ngFor="let option of currentQuestion.options"
+                class="option-card"
+                [class.selected]="isSelected(option.id)"
+                (click)="selectOption(option.id)"
+            >
+                <div class="option-icon">{{ option.icon }}</div>
+                <span class="option-label">{{ option.label }}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="navigation-container">
+        <button
+            class="nav-btn secondary"
+            (click)="previousQuestion()"
+            [disabled]="currentQuestionIndex === 0"
+        >
+            Previous
+        </button>
+
+        <button class="nav-btn primary" (click)="nextQuestion()" [disabled]="!canProceed">
+            {{ isLastQuestion ? 'Complete' : 'Next' }}
+        </button>
+    </div>
+</div>
