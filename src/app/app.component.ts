@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SignUpComponent } from './components/signup/signup.component';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    imports: [SignUpComponent],
 })
-export class AppComponent {
-  title = 'task-manager';
-}
+export class AppComponent {}
