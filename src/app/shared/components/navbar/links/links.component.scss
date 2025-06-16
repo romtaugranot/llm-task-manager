@@ -33,3 +33,9 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none; // Hide nav links on mobile, could implement mobile menu
+    }
+}
