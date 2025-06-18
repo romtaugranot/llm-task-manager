@@ -69,6 +69,18 @@ export class DashboardComponent {
     filter = signal<'all' | 'pending' | 'completed' | 'overdue'>('all');
     sortBy = signal<'priority' | 'dueDate' | 'category'>('priority');
     showAddTaskModal = signal<boolean>(false);
+    
+    // Quick task input
+    newTaskTitle = '';
+    
+    // Detailed task form
+    newTask = {
+        title: '',
+        description: '',
+        priority: 'medium' as Task['priority'],
+        category: 'personal' as Task['category'],
+        dueDate: ''
+    };
 
     filteredTasks = computed(() => {
         let filtered = this.tasks();
@@ -153,22 +165,62 @@ export class DashboardComponent {
         this.tasks.update((tasks) => tasks.filter((task) => task.id !== taskId));
     }
 
-    addTask(newTask: Omit<Task, 'id' | 'createdAt'>): void {
+    addQuickTask(): void {
+        if (!this.newTaskTitle?.trim()) return;
+        
         const task: Task = {
-            ...newTask,
             id: Date.now().toString(),
+            title: this.newTaskTitle.trim(),
+            priority: 'medium',
+            category: 'personal',
+            completed: false,
             createdAt: new Date(),
         };
+        
         this.tasks.update((tasks) => [...tasks, task]);
+        this.newTaskTitle = '';
+    }
+
+    submitDetailedTask(): void {
+        if (!this.newTask.title.trim()) return;
+        
+        const task: Task = {
+            id: Date.now().toString(),
+            title: this.newTask.title.trim(),
+            description: this.newTask.description.trim() || undefined,
+            priority: this.newTask.priority,
+            category: this.newTask.category,
+            completed: false,
+            dueDate: this.newTask.dueDate ? new Date(this.newTask.dueDate) : undefined,
+            createdAt: new Date(),
+        };
+        
+        this.tasks.update((tasks) => [...tasks, task]);
+        this.resetNewTask();
         this.showAddTaskModal.set(false);
+    }
+
+    private resetNewTask(): void {
+        this.newTask = {
+            title: '',
+            description: '',
+            priority: 'medium',
+            category: 'personal',
+            dueDate: ''
+        };
+    }
+
+    editTask(taskId: string): void {
+        // TODO: Implement edit functionality
+        console.log('Edit task:', taskId);
     }
 
     setFilter(filter: 'all' | 'pending' | 'completed' | 'overdue'): void {
         this.filter.set(filter);
     }
 
-    setSortBy(sortBy: 'priority' | 'dueDate' | 'category'): void {
-        this.sortBy.set(sortBy);
+    setSortBy(event: any): void {
+        this.sortBy.set(event.target.value);
     }
 
     openAddTaskModal(): void {
@@ -177,5 +229,71 @@ export class DashboardComponent {
 
     closeAddTaskModal(): void {
         this.showAddTaskModal.set(false);
+        this.resetNewTask();
+    }
+
+    markAllCompleted(): void {
+        this.tasks.update((tasks) =>
+            tasks.map((task) => ({
+                ...task,
+                completed: true,
+                completedAt: task.completed ? task.completedAt : new Date(),
+            }))
+        );
+    }
+
+    clearCompleted(): void {
+        this.tasks.update((tasks) => tasks.filter((task) => !task.completed));
+    }
+
+    getTaskClasses(task: Task): string {
+        const classes = [`priority-${task.priority}`];
+        if (task.completed) classes.push('completed');
+        return classes.join(' ');
+    }
+
+    getFilterTitle(): string {
+        switch (this.filter()) {
+            case 'pending': return 'Pending Tasks';
+            case 'completed': return 'Completed Tasks';
+            case 'overdue': return 'Overdue Tasks';
+            default: return 'All Tasks';
+        }
+    }
+
+    getEmptyStateTitle(): string {
+        switch (this.filter()) {
+            case 'pending': return 'No pending tasks';
+            case 'completed': return 'No completed tasks';
+            case 'overdue': return 'No overdue tasks';
+            default: return 'No tasks yet';
+        }
+    }
+
+    getEmptyStateMessage(): string {
+        switch (this.filter()) {
+            case 'pending': return 'All caught up! Great job.';
+            case 'completed': return 'Complete some tasks to see them here.';
+            case 'overdue': return 'You\'re on track with all your deadlines.';
+            default: return 'Add your first task to get started.';
+        }
+    }
+
+    isOverdue(task: Task): boolean {
+        return !task.completed && task.dueDate ? task.dueDate < new Date() : false;
+    }
+
+    formatDueDate(date: Date): string {
+        const now = new Date();
+        const diffTime = date.getTime() - now.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 0) return 'Today';
+        if (diffDays === 1) return 'Tomorrow';
+        if (diffDays === -1) return 'Yesterday';
+        if (diffDays < 0) return `${Math.abs(diffDays)} days ago`;
+        if (diffDays <= 7) return `In ${diffDays} days`;
+        
+        return date.toLocaleDateString();
     }
 }
