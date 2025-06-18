@@ -1,3 +1,17 @@
+/* Overview content wrapper */
+.overview-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Stats grid container */
+.stats-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -29,7 +43,7 @@
     font-size: 18px;
     font-weight: 600;
     color: white;
-    margin-bottom: 12px;
+    margin: 0 0 16px 0;
     letter-spacing: -0.3px;
 }
 
@@ -47,15 +61,18 @@
     border-radius: 16px;
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    flex: 0 0 300px; /* Slightly smaller fixed width */
+    flex: 0 0 300px; /* Fixed width */
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Distribute space evenly */
+    min-height: 0;
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+    margin: 0;
 }
 
 .stat-card {
@@ -115,12 +132,21 @@
     border-left: 3px solid #06b6d4;
 }
 
+/* Action buttons container */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    flex-shrink: 0; /* Don't shrink */
+}
+
 .action-btn {
     display: flex;
     align-items: center;
     gap: 8px;
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -129,8 +155,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 6px;
-    margin-top: 8px;
+    margin: 0;
 }
 
 .action-btn:last-child {
@@ -143,7 +168,7 @@
 }
 
 .action-icon {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Add Task Section - Now full width */

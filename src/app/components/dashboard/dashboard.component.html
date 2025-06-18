@@ -5,48 +5,54 @@
     <div class="top-row">
         <!-- Left: Stats Section -->
         <div class="stats-section">
-            <h2 class="section-title">Overview</h2>
-            <div class="stats-grid">
-                <div class="stat-card completed">
-                    <div class="stat-content">
-                        <div class="stat-number">{{ taskStats().completed }}</div>
-                        <div class="stat-label">Completed</div>
-                    </div>
-                    <div class="stat-icon">✓</div>
-                </div>
+            <div class="overview-content">
+                <h2 class="section-title">Overview</h2>
+                <div class="stats-content">
+                    <div class="stats-grid">
+                        <div class="stat-card completed">
+                            <div class="stat-content">
+                                <div class="stat-number">{{ taskStats().completed }}</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-icon">✓</div>
+                        </div>
 
-                <div class="stat-card pending">
-                    <div class="stat-content">
-                        <div class="stat-number">{{ taskStats().pending }}</div>
-                        <div class="stat-label">Pending</div>
-                    </div>
-                    <div class="stat-icon">⏳</div>
-                </div>
+                        <div class="stat-card pending">
+                            <div class="stat-content">
+                                <div class="stat-number">{{ taskStats().pending }}</div>
+                                <div class="stat-label">Pending</div>
+                            </div>
+                            <div class="stat-icon">⏳</div>
+                        </div>
 
-                <div class="stat-card overdue">
-                    <div class="stat-content">
-                        <div class="stat-number">{{ taskStats().overdue }}</div>
-                        <div class="stat-label">Overdue</div>
-                    </div>
-                    <div class="stat-icon">⚠️</div>
-                </div>
+                        <div class="stat-card overdue">
+                            <div class="stat-content">
+                                <div class="stat-number">{{ taskStats().overdue }}</div>
+                                <div class="stat-label">Overdue</div>
+                            </div>
+                            <div class="stat-icon">⚠️</div>
+                        </div>
 
-                <div class="stat-card total">
-                    <div class="stat-content">
-                        <div class="stat-number">{{ taskStats().total }}</div>
-                        <div class="stat-label">Total Tasks</div>
+                        <div class="stat-card total">
+                            <div class="stat-content">
+                                <div class="stat-number">{{ taskStats().total }}</div>
+                                <div class="stat-label">Total Tasks</div>
+                            </div>
+                            <div class="stat-icon">📋</div>
+                        </div>
                     </div>
-                    <div class="stat-icon">📋</div>
                 </div>
             </div>
-            <button class="action-btn" (click)="markAllCompleted()">
-                <span class="action-icon">✅</span>
-                Mark All Done
-            </button>
-            <button class="action-btn" (click)="clearCompleted()">
-                <span class="action-icon">🗑️</span>
-                Clear Completed
-            </button>
+            <div class="action-buttons">
+                <button class="action-btn" (click)="markAllCompleted()">
+                    <span class="action-icon">✅</span>
+                    Mark All Done
+                </button>
+                <button class="action-btn" (click)="clearCompleted()">
+                    <span class="action-icon">🗑️</span>
+                    Clear Completed
+                </button>
+            </div>
         </div>
 
         <!-- Right: Tasks -->
