@@ -1,33 +1,25 @@
 .dashboard-container {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
     max-width: 1400px;
     margin-top: 50px;
     padding: 100px 24px 24px;
     gap: 24px;
     min-height: 100vh;
     box-sizing: border-box;
-    grid-template-areas:
-        'overview tasks'
-        'quick-actions add-task';
 }
 
-/* Grid Layout Areas */
-.stats-section {
-    grid-area: overview;
+/* Top row - Overview and Tasks side by side */
+.top-row {
+    display: flex;
+    gap: 24px;
+    flex: 1;
 }
 
-.quick-actions {
-    grid-area: quick-actions;
-}
-
-.tasks-section {
-    grid-area: tasks;
-}
-
-.add-task-section {
-    grid-area: add-task;
+/* Bottom row - Add Task (full width) */
+.bottom-row {
+    display: flex;
+    width: 100%;
 }
 
 .section-title {
@@ -52,6 +44,9 @@
     border-radius: 16px;
     padding: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 0 0 320px; /* Fixed width similar to original */
+    display: flex;
+    flex-direction: column;
 }
 
 .stats-grid {
@@ -117,15 +112,6 @@
     border-left: 3px solid #06b6d4;
 }
 
-/* Quick Actions */
-.quick-actions {
-    background: rgba(30, 30, 40, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .action-btn {
     display: flex;
     align-items: center;
@@ -157,13 +143,14 @@
     font-size: 16px;
 }
 
-/* Add Task Section */
+/* Add Task Section - Now full width */
 .add-task-section {
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 16px;
     padding: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
 }
 
 .add-task-input-container {
@@ -244,6 +231,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
+    flex: 1; /* Take remaining space */
 }
 
 .tasks-header {
@@ -661,14 +649,15 @@
 /* Responsive */
 @media (max-width: 1024px) {
     .dashboard-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
         padding: 100px 16px 24px;
-        grid-template-areas:
-            'overview'
-            'tasks'
-            'add-task'
-            'quick-actions';
+    }
+
+    .top-row {
+        flex-direction: column;
+    }
+
+    .stats-section {
+        flex: none;
     }
 
     .stats-grid {
