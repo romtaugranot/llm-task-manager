@@ -136,6 +136,8 @@
                     <div
                         class="task-checkbox"
                         [class.checked]="task.completed"
+                        tabindex="0"
+                        role="button"
                         (click)="toggleTask(task.id)"
                     ></div>
 
@@ -179,76 +181,5 @@
                 </div>
             </ng-template>
         </div>
-    </div>
-</div>
-
-<!-- Add Task Modal -->
-<div class="modal-overlay" *ngIf="showAddTaskModal()" (click)="closeAddTaskModal()">
-    <div class="modal" (click)="$event.stopPropagation()">
-        <h2>Add New Task</h2>
-        <form (ngSubmit)="submitDetailedTask()" #taskForm="ngForm">
-            <div class="form-group">
-                <label class="form-label">Title *</label>
-                <input
-                    type="text"
-                    class="form-input"
-                    [(ngModel)]="newTask.title"
-                    name="title"
-                    required
-                />
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Description</label>
-                <textarea
-                    class="form-textarea"
-                    [(ngModel)]="newTask.description"
-                    name="description"
-                    rows="3"
-                ></textarea>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">Priority</label>
-                    <select class="form-select" [(ngModel)]="newTask.priority" name="priority">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                        <option value="urgent">Urgent</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Category</label>
-                    <select class="form-select" [(ngModel)]="newTask.category" name="category">
-                        <option value="personal">Personal</option>
-                        <option value="work">Work</option>
-                        <option value="fitness">Fitness</option>
-                        <option value="nutrition">Nutrition</option>
-                        <option value="wellness">Wellness</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Due Date</label>
-                <input
-                    type="datetime-local"
-                    class="form-input"
-                    [(ngModel)]="newTask.dueDate"
-                    name="dueDate"
-                />
-            </div>
-
-            <div class="form-actions">
-                <button type="button" class="btn btn-secondary" (click)="closeAddTaskModal()">
-                    Cancel
-                </button>
-                <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">
-                    Add Task
-                </button>
-            </div>
-        </form>
     </div>
 </div>
