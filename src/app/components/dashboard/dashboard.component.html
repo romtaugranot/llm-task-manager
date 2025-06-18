@@ -14,7 +14,7 @@
                     </div>
                     <div class="stat-icon">✓</div>
                 </div>
-                
+
                 <div class="stat-card pending">
                     <div class="stat-content">
                         <div class="stat-number">{{ taskStats().pending }}</div>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="stat-icon">⏳</div>
                 </div>
-                
+
                 <div class="stat-card overdue">
                     <div class="stat-content">
                         <div class="stat-number">{{ taskStats().overdue }}</div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="stat-icon">⚠️</div>
                 </div>
-                
+
                 <div class="stat-card total">
                     <div class="stat-content">
                         <div class="stat-number">{{ taskStats().total }}</div>
@@ -45,29 +45,29 @@
         <div class="filters-section">
             <h3 class="section-subtitle">Filter Tasks</h3>
             <div class="filter-buttons">
-                <button 
-                    class="filter-btn" 
+                <button
+                    class="filter-btn"
                     [class.active]="filter() === 'all'"
                     (click)="setFilter('all')"
                 >
                     All Tasks
                 </button>
-                <button 
-                    class="filter-btn" 
+                <button
+                    class="filter-btn"
                     [class.active]="filter() === 'pending'"
                     (click)="setFilter('pending')"
                 >
                     Pending
                 </button>
-                <button 
-                    class="filter-btn" 
+                <button
+                    class="filter-btn"
                     [class.active]="filter() === 'completed'"
                     (click)="setFilter('completed')"
                 >
                     Completed
                 </button>
-                <button 
-                    class="filter-btn" 
+                <button
+                    class="filter-btn"
                     [class.active]="filter() === 'overdue'"
                     (click)="setFilter('overdue')"
                 >
@@ -95,18 +95,18 @@
         <!-- Add Task Input -->
         <div class="add-task-section">
             <div class="add-task-input-container">
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     class="add-task-input"
                     placeholder="Add a new task..."
                     [(ngModel)]="newTaskTitle"
                     (keyup.enter)="addQuickTask()"
                     #taskInput
                 />
-                <button 
-                    class="add-task-submit" 
+                <button
+                    class="add-task-submit"
                     (click)="addQuickTask()"
-                    [disabled]="!newTaskTitle?.trim()"
+                    [disabled]="!newTaskTitle.trim()"
                 >
                     <span>+</span>
                 </button>
@@ -133,11 +133,12 @@
             <div class="task-list" *ngIf="filteredTasks().length > 0; else emptyState">
                 @for(task of filteredTasks(); track task.id) {
                 <div class="task-item" [class]="getTaskClasses(task)">
-                    <div class="task-checkbox" 
-                         [class.checked]="task.completed" 
-                         (click)="toggleTask(task.id)">
-                    </div>
-                    
+                    <div
+                        class="task-checkbox"
+                        [class.checked]="task.completed"
+                        (click)="toggleTask(task.id)"
+                    ></div>
+
                     <div class="task-content">
                         <div class="task-title">{{ task.title }}</div>
                         <div class="task-description" *ngIf="task.description">
@@ -150,18 +151,18 @@
                             <span class="task-priority" [class]="'priority-' + task.priority">
                                 {{ task.priority | titlecase }}
                             </span>
-                            <span class="task-due-date" 
-                                  [class.overdue]="isOverdue(task)"
-                                  *ngIf="task.dueDate">
+                            <span
+                                class="task-due-date"
+                                [class.overdue]="isOverdue(task)"
+                                *ngIf="task.dueDate"
+                            >
                                 {{ formatDueDate(task.dueDate) }}
                             </span>
                         </div>
                     </div>
-                    
+
                     <div class="task-actions">
-                        <button class="task-action-btn edit" (click)="editTask(task.id)">
-                            ✏️
-                        </button>
+                        <button class="task-action-btn edit" (click)="editTask(task.id)">✏️</button>
                         <button class="task-action-btn delete" (click)="deleteTask(task.id)">
                             🗑️
                         </button>
@@ -188,25 +189,25 @@
         <form (ngSubmit)="submitDetailedTask()" #taskForm="ngForm">
             <div class="form-group">
                 <label class="form-label">Title *</label>
-                <input 
-                    type="text" 
-                    class="form-input" 
+                <input
+                    type="text"
+                    class="form-input"
                     [(ngModel)]="newTask.title"
                     name="title"
                     required
                 />
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Description</label>
-                <textarea 
-                    class="form-textarea" 
+                <textarea
+                    class="form-textarea"
                     [(ngModel)]="newTask.description"
                     name="description"
                     rows="3"
                 ></textarea>
             </div>
-            
+
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">Priority</label>
@@ -217,7 +218,7 @@
                         <option value="urgent">Urgent</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Category</label>
                     <select class="form-select" [(ngModel)]="newTask.category" name="category">
@@ -229,17 +230,17 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Due Date</label>
-                <input 
-                    type="datetime-local" 
-                    class="form-input" 
+                <input
+                    type="datetime-local"
+                    class="form-input"
                     [(ngModel)]="newTask.dueDate"
                     name="dueDate"
                 />
             </div>
-            
+
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" (click)="closeAddTaskModal()">
                     Cancel
