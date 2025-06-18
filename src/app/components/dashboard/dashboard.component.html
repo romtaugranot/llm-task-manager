@@ -1,0 +1,107 @@
+<app-navbar />
+
+<div class="dashboard-container">
+    <!-- Stats Cards -->
+    <div class="stats-container">
+        <div class="stat-card completed">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card pending">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card overdue">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Overdue</div>
+        </div>
+        <div class="stat-card total">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Total Tasks</div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-container">
+        <div class="filters">
+            <button class="filter-btn active" onclick="setFilter('all')">All</button>
+            <button class="filter-btn" onclick="setFilter('pending')">Pending</button>
+            <button class="filter-btn" onclick="setFilter('completed')">Completed</button>
+            <button class="filter-btn" onclick="setFilter('overdue')">Overdue</button>
+        </div>
+        <button class="add-task-btn" onclick="openModal()">
+            <span>+</span>
+            Add Task
+        </button>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list">
+        <div class="task-item urgent">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-content">
+                <div class="task-title">Book dentist appointment</div>
+                <div class="task-meta">
+                    <span class="task-category personal">Personal</span>
+                    <span class="task-priority urgent">Urgent</span>
+                    <span class="task-due-date overdue">Yesterday</span>
+                </div>
+            </div>
+            <div class="task-actions">
+                <button class="task-action-btn">✏️</button>
+                <button class="task-action-btn delete">🗑️</button>
+            </div>
+        </div>
+
+        <div class="task-item high">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-content">
+                <div class="task-title">Complete morning workout</div>
+                <div class="task-description">30 minutes strength training</div>
+                <div class="task-meta">
+                    <span class="task-category fitness">Fitness</span>
+                    <span class="task-priority high">High</span>
+                    <span class="task-due-date">Today</span>
+                </div>
+            </div>
+            <div class="task-actions">
+                <button class="task-action-btn">✏️</button>
+                <button class="task-action-btn delete">🗑️</button>
+            </div>
+        </div>
+
+        <div class="task-item medium completed">
+            <div class="task-checkbox checked" onclick="toggleTask(this)"></div>
+            <div class="task-content">
+                <div class="task-title">Meal prep for the week</div>
+                <div class="task-description">Prepare healthy meals for 5 days</div>
+                <div class="task-meta">
+                    <span class="task-category nutrition">Nutrition</span>
+                    <span class="task-priority medium">Medium</span>
+                    <span class="task-due-date">Tomorrow</span>
+                </div>
+            </div>
+            <div class="task-actions">
+                <button class="task-action-btn">✏️</button>
+                <button class="task-action-btn delete">🗑️</button>
+            </div>
+        </div>
+
+        <div class="task-item low">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-content">
+                <div class="task-title">Meditation session</div>
+                <div class="task-description">15 minutes mindfulness practice</div>
+                <div class="task-meta">
+                    <span class="task-category wellness">Wellness</span>
+                    <span class="task-priority low">Low</span>
+                    <span class="task-due-date">In 1 hour</span>
+                </div>
+            </div>
+            <div class="task-actions">
+                <button class="task-action-btn">✏️</button>
+                <button class="task-action-btn delete">🗑️</button>
+            </div>
+        </div>
+    </div>
+</div>
