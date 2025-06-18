@@ -1,7 +1,6 @@
 <app-navbar />
 
 <div class="dashboard-container">
-    <!-- Top Left - Stats Overview -->
     <div class="stats-section">
         <h2 class="section-title">Overview</h2>
         <div class="stats-grid">
@@ -37,6 +36,14 @@
                 <div class="stat-icon">📋</div>
             </div>
         </div>
+        <button class="action-btn" (click)="markAllCompleted()">
+            <span class="action-icon">✅</span>
+            Mark All Done
+        </button>
+        <button class="action-btn" (click)="clearCompleted()">
+            <span class="action-icon">🗑️</span>
+            Clear Completed
+        </button>
     </div>
 
     <!-- Top Right - Tasks -->
@@ -135,19 +142,6 @@
                 <p>{{ getEmptyStateMessage() }}</p>
             </div>
         </ng-template>
-    </div>
-
-    <!-- Bottom Left - Quick Actions -->
-    <div class="quick-actions">
-        <h3 class="section-subtitle">Quick Actions</h3>
-        <button class="action-btn" (click)="markAllCompleted()">
-            <span class="action-icon">✅</span>
-            Mark All Done
-        </button>
-        <button class="action-btn" (click)="clearCompleted()">
-            <span class="action-icon">🗑️</span>
-            Clear Completed
-        </button>
     </div>
 
     <!-- Bottom Right - Add Task -->

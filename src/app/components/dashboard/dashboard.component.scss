@@ -3,7 +3,7 @@
     grid-template-columns: 320px 1fr;
     grid-template-rows: auto auto;
     max-width: 1400px;
-    margin-top: 300px;
+    margin-top: 50px;
     padding: 100px 24px 24px;
     gap: 24px;
     min-height: 100vh;
@@ -141,6 +141,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 8px;
+    margin-top: 10px;
 }
 
 .action-btn:last-child {
