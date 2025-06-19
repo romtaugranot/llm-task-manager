@@ -24,9 +24,11 @@
                 <span class="task-priority" [class]="'priority-' + task.priority">
                     {{ task.priority | titlecase }}
                 </span>
-                <span class="task-due-date" [class.overdue]="isOverdue(task)" *ngIf="task.dueDate">
+                @if(task.dueDate) {
+                <span class="task-due-date" [class.overdue]="isOverdue(task)">
                     {{ formatDueDate(task.dueDate) }}
                 </span>
+                }
             </div>
         </div>
 
