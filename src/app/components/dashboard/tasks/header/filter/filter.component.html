@@ -1,0 +1,28 @@
+<div class="filter-controls">
+    <div class="filter-buttons">
+        <button class="filter-btn" [class.active]="filter() === 'all'" (click)="setFilter('all')">
+            <span>All</span>
+        </button>
+        <button
+            class="filter-btn"
+            [class.active]="filter() === 'pending'"
+            (click)="setFilter('pending')"
+        >
+            <span>Pending</span>
+        </button>
+        <button
+            class="filter-btn"
+            [class.active]="filter() === 'completed'"
+            (click)="setFilter('completed')"
+        >
+            <span>Completed</span>
+        </button>
+        <button
+            class="filter-btn"
+            [class.active]="filter() === 'overdue'"
+            (click)="setFilter('overdue')"
+        >
+            <span>Overdue</span>
+        </button>
+    </div>
+</div>

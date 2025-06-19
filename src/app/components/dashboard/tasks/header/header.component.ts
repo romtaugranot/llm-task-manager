@@ -1,11 +1,13 @@
 import { Component, computed, input, output } from '@angular/core';
 import { Task } from '../../interfaces';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FilterComponent } from './filter/filter.component';
+import { SearchComponent } from './search/search.component';
+import { SortComponent } from './sort/sort.component';
 
 @Component({
     selector: 'app-dashboard-tasks-header',
-    imports: [CommonModule, FormsModule],
+    imports: [FormsModule, FilterComponent, SearchComponent, SortComponent],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
 })

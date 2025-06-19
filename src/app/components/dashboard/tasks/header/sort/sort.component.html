@@ -1,0 +1,7 @@
+<div class="sort-controls">
+    <select class="sort-select" [ngModel]="sortBy()" (ngModelChange)="setSortBy($event)">
+        <option value="priority">🔥 Sort by Priority</option>
+        <option value="dueDate">📅 Sort by Due Date</option>
+        <option value="category">📂 Sort by Category</option>
+    </select>
+</div>
