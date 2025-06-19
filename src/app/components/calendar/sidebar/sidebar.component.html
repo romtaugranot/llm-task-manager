@@ -1,0 +1,178 @@
+<div class="calendar-sidebar">
+    <!-- Selected Date Events -->
+    @if (selectedDate()) {
+    <div class="sidebar-section">
+        <h3 class="section-title">
+            {{ formatSelectedDate() }}
+        </h3>
+
+        @if (selectedDateEvents().length > 0) {
+        <div class="events-list">
+            @for (event of selectedDateEvents(); track event.id) {
+            <div class="event-item" [style.border-left-color]="event.color">
+                <div class="event-header">
+                    <div class="event-title">{{ event.title }}</div>
+                    <div class="event-time">{{ formatEventTime(event) }}</div>
+                </div>
+                @if (event.description) {
+                <div class="event-description">{{ event.description }}</div>
+                } @if (event.type === 'task') {
+                <div class="event-actions">
+                    <button
+                        class="task-complete-btn"
+                        (click)="toggleTask(event.taskId!)"
+                        [class.completed]="isTaskCompleted(event.taskId!)"
+                    >
+                        <span class="checkbox"> @if (isTaskCompleted(event.taskId!)) { ✓ } </span>
+                        {{ isTaskCompleted(event.taskId!) ? 'Completed' : 'Mark Complete' }}
+                    </button>
+                </div>
+                }
+            </div>
+            }
+        </div>
+        } @else {
+        <div class="empty-state">
+            <div class="empty-icon">📅</div>
+            <p>No events scheduled for this day</p>
+            <button class="add-event-btn" (click)="showAddEvent = true">Add Event</button>
+        </div>
+        }
+    </div>
+    }
+
+    <!-- Upcoming Events -->
+    <div class="sidebar-section">
+        <h3 class="section-title">
+            <span class="title-icon">⏰</span>
+            Upcoming Events
+        </h3>
+
+        @if (upcomingEvents().length > 0) {
+        <div class="events-list">
+            @for (event of upcomingEvents(); track event.id) {
+            <div class="event-item upcoming" [style.border-left-color]="event.color">
+                <div class="event-header">
+                    <div class="event-title">{{ event.title }}</div>
+                    <div class="event-date">{{ formatUpcomingDate(event.startDate) }}</div>
+                </div>
+                <div class="event-time">{{ formatEventTime(event) }}</div>
+                @if (event.type === 'task') {
+                <div class="task-priority priority-{{ getTaskPriority(event.taskId!) }}">
+                    {{ getTaskPriority(event.taskId!) | titlecase }} Priority
+                </div>
+                }
+            </div>
+            }
+        </div>
+        } @else {
+        <div class="empty-state">
+            <div class="empty-icon">🎯</div>
+            <p>No upcoming events</p>
+        </div>
+        }
+    </div>
+
+    <!-- Task Overview -->
+    <div class="sidebar-section">
+        <h3 class="section-title">
+            <span class="title-icon">📋</span>
+            Task Overview
+        </h3>
+
+        <div class="task-stats">
+            <div class="stat-item">
+                <div class="stat-number">{{ getTotalTasks() }}</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ getCompletedTasks() }}</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ getOverdueTasks() }}</div>
+                <div class="stat-label">Overdue</div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="getCompletionPercentage()"></div>
+        </div>
+        <div class="progress-text">{{ getCompletionPercentage() }}% Complete</div>
+    </div>
+
+    <!-- Quick Add Event -->
+    @if (showAddEvent) {
+    <div class="sidebar-section add-event-section">
+        <h3 class="section-title">
+            <span class="title-icon">➕</span>
+            Quick Add Event
+            <button class="close-btn" (click)="showAddEvent = false">×</button>
+        </h3>
+
+        <form (ngSubmit)="addEvent()" class="add-event-form">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Event title"
+                    [(ngModel)]="newEvent.title"
+                    name="title"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <textarea
+                    class="form-input"
+                    placeholder="Description (optional)"
+                    [(ngModel)]="newEvent.description"
+                    name="description"
+                    rows="2"
+                ></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <input
+                        type="date"
+                        class="form-input"
+                        [(ngModel)]="newEvent.date"
+                        name="date"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="time"
+                        class="form-input"
+                        [(ngModel)]="newEvent.time"
+                        name="time"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <select class="form-input" [(ngModel)]="newEvent.category" name="category" required>
+                    <option value="">Select category</option>
+                    <option value="fitness">Fitness</option>
+                    <option value="nutrition">Nutrition</option>
+                    <option value="wellness">Wellness</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn secondary" (click)="showAddEvent = false">
+                    Cancel
+                </button>
+                <button type="submit" class="btn primary" [disabled]="!isFormValid()">
+                    Add Event
+                </button>
+            </div>
+        </form>
+    </div>
+    }
+</div>

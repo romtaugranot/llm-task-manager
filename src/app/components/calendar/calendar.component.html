@@ -1,0 +1,35 @@
+<app-navbar />
+
+<div class="calendar-container">
+    <div class="calendar-main">
+        <app-calendar-header
+            [currentDate]="currentDate()"
+            [selectedView]="selectedView()"
+            [currentPeriod]="getCurrentPeriod()"
+            (viewChange)="setView($event)"
+            (dateChange)="navigateToDate($event)"
+        />
+
+        <div class="calendar-content">
+            <app-calendar-view
+                [currentDate]="currentDate()"
+                [selectedView]="selectedView()"
+                [events]="calendarEvents()"
+                [selectedDate]="selectedDate()"
+                (dateSelect)="selectDate($event)"
+                (eventUpdate)="updateEvent($event.id, $event.updates)"
+                (eventDelete)="deleteEvent($event)"
+                (taskToggle)="toggleTask($event)"
+            />
+        </div>
+    </div>
+
+    <app-calendar-sidebar
+        [selectedDate]="selectedDate()"
+        [selectedDateEvents]="selectedDateEvents()"
+        [upcomingEvents]="upcomingEvents()"
+        [tasks]="tasks()"
+        (eventAdd)="addEvent($event)"
+        (taskToggle)="toggleTask($event)"
+    />
+</div>

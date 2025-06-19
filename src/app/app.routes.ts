@@ -19,6 +19,11 @@ export const routes: Routes = [
             import('./components/dashboard/dashboard.component').then((m) => m.DashboardComponent),
     },
     {
+        path: 'calendar',
+        loadComponent: () =>
+            import('./components/calendar/calendar.component').then((m) => m.CalendarComponent),
+    },
+    {
         path: 'login',
         loadComponent: () =>
             import('./components/login/login.component').then((m) => m.LoginComponent),

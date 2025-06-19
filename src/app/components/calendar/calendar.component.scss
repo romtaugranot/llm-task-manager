@@ -1,0 +1,63 @@
+.calendar-container {
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 80px 24px 16px;
+    gap: 24px;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.calendar-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: rgba(30, 30, 40, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.calendar-content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+// Responsive design
+@media (max-width: 1200px) {
+    .calendar-container {
+        flex-direction: column;
+        padding: 70px 16px 12px;
+        gap: 16px;
+    }
+
+    .calendar-main {
+        order: 2;
+        height: 60vh;
+    }
+
+    app-calendar-sidebar {
+        order: 1;
+        height: auto;
+        max-height: 35vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 70px 12px 8px;
+        gap: 12px;
+    }
+
+    .calendar-main {
+        height: 55vh;
+    }
+
+    app-calendar-sidebar {
+        max-height: 40vh;
+    }
+}
