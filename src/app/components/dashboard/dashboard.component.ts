@@ -34,6 +34,7 @@ export interface Task {
     styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+    //TODO: replace with a service for real data
     tasks = signal<Task[]>([
         {
             id: '1',
@@ -99,6 +100,7 @@ export class DashboardComponent {
 
     filter = signal<'all' | 'pending' | 'completed' | 'overdue'>('all');
     sortBy = signal<'priority' | 'dueDate' | 'category'>('priority');
+    searchQuery = signal<string>('');
 
     taskStats = computed((): TaskStats => {
         const tasks = this.tasks();
@@ -145,6 +147,10 @@ export class DashboardComponent {
 
     setSortBy(sortBy: 'priority' | 'dueDate' | 'category'): void {
         this.sortBy.set(sortBy);
+    }
+
+    setSearchChange(query: string): void {
+        this.searchQuery.set(query);
     }
 
     markAllCompleted(): void {

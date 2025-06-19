@@ -1,0 +1,54 @@
+@if (displayedTasks().length > 0) {
+<div class="task-list">
+    @for(task of displayedTasks(); track task.id) {
+    <div class="task-item" [class]="getTaskClasses(task)">
+        <div
+            class="task-checkbox"
+            [class.checked]="task.completed"
+            tabindex="0"
+            role="button"
+            (click)="toggleTask.emit(task.id)"
+        ></div>
+
+        <div class="task-content">
+            <div class="task-title">{{ task.title }}</div>
+            @if(task.description) {
+            <div class="task-description">
+                {{ task.description }}
+            </div>
+            }
+            <div class="task-meta">
+                <span class="task-category" [class]="'category-' + task.category">
+                    {{ task.category | titlecase }}
+                </span>
+                <span class="task-priority" [class]="'priority-' + task.priority">
+                    {{ task.priority | titlecase }}
+                </span>
+                <span class="task-due-date" [class.overdue]="isOverdue(task)" *ngIf="task.dueDate">
+                    {{ formatDueDate(task.dueDate) }}
+                </span>
+            </div>
+        </div>
+
+        <div class="task-actions">
+            <button class="task-action-btn edit" (click)="editTask.emit(task.id)" title="Edit task">
+                ✏️
+            </button>
+            <button
+                class="task-action-btn delete"
+                (click)="deleteTask.emit(task.id)"
+                title="Delete task"
+            >
+                🗑️
+            </button>
+        </div>
+    </div>
+    }
+</div>
+} @else {
+<div class="empty-state">
+    <div class="empty-state-icon">📝</div>
+    <h3>{{ getEmptyStateTitle() }}</h3>
+    <p>{{ getEmptyStateMessage() }}</p>
+</div>
+}

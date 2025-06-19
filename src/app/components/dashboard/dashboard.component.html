@@ -15,11 +15,13 @@
             [tasks]="tasks()"
             [filter]="filter()"
             [sortBy]="sortBy()"
+            [searchQuery]="searchQuery()"
             (toggleTask)="toggleTask($event)"
             (editTask)="editTask($event)"
             (deleteTask)="deleteTask($event)"
             (filterChange)="setFilter($event)"
             (sortChange)="setSortBy($event)"
+            (searchQueryChange)="setSearchChange($event)"
         />
     </div>
 

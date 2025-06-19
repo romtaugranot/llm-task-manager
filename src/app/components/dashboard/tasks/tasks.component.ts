@@ -1,97 +1,29 @@
-import { Component, input, output, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, input, output } from '@angular/core';
 import { Task } from '../interfaces';
+import { TasksCardHeaderComponent } from './header/header.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 @Component({
     selector: 'app-dashboard-tasks',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [TasksCardHeaderComponent, TaskListComponent],
     templateUrl: './tasks.component.html',
     styleUrl: './tasks.component.scss',
 })
 export class DashboardTasksComponent {
     tasks = input.required<Task[]>();
+
     filter = input.required<'all' | 'pending' | 'completed' | 'overdue'>();
     sortBy = input.required<'priority' | 'dueDate' | 'category'>();
+    searchQuery = input.required<string>();
 
     toggleTask = output<string>();
     editTask = output<string>();
     deleteTask = output<string>();
+
     filterChange = output<'all' | 'pending' | 'completed' | 'overdue'>();
     sortChange = output<'priority' | 'dueDate' | 'category'>();
-
-    searchQuery = signal<string>('');
-
-    // Filter and search tasks
-    filteredTasks = computed(() => {
-        let filtered = this.tasks();
-
-        switch (this.filter()) {
-            case 'pending':
-                filtered = filtered.filter((task) => !task.completed);
-                break;
-            case 'completed':
-                filtered = filtered.filter((task) => task.completed);
-                break;
-            case 'overdue':
-                filtered = filtered.filter(
-                    (task) => !task.completed && task.dueDate && task.dueDate < new Date()
-                );
-                break;
-        }
-
-        return this.sortTasks(filtered);
-    });
-
-    // Apply search query
-    displayedTasks = computed(() => {
-        const query = this.searchQuery().toLowerCase().trim();
-        if (!query) {
-            return this.filteredTasks();
-        }
-
-        return this.filteredTasks().filter(
-            (task) =>
-                task.title.toLowerCase().includes(query) ||
-                task.description?.toLowerCase().includes(query) ||
-                task.category.toLowerCase().includes(query) ||
-                task.priority.toLowerCase().includes(query)
-        );
-    });
-
-    private sortTasks(tasks: Task[]): Task[] {
-        return [...tasks].sort((a, b) => {
-            switch (this.sortBy()) {
-                case 'priority':
-                    return this.getPriorityWeight(b.priority) - this.getPriorityWeight(a.priority);
-                case 'dueDate':
-                    if (!a.dueDate && !b.dueDate) return 0;
-                    if (!a.dueDate) return 1;
-                    if (!b.dueDate) return -1;
-                    return a.dueDate.getTime() - b.dueDate.getTime();
-                case 'category':
-                    return a.category.localeCompare(b.category);
-                default:
-                    return 0;
-            }
-        });
-    }
-
-    private getPriorityWeight(priority: Task['priority']): number {
-        switch (priority) {
-            case 'urgent':
-                return 4;
-            case 'high':
-                return 3;
-            case 'medium':
-                return 2;
-            case 'low':
-                return 1;
-            default:
-                return 0;
-        }
-    }
+    searchQueryChange = output<string>();
 
     setFilter(filter: 'all' | 'pending' | 'completed' | 'overdue'): void {
         this.filterChange.emit(filter);
@@ -101,23 +33,14 @@ export class DashboardTasksComponent {
         this.sortChange.emit(sortBy);
     }
 
+    setSearchChange(query: string): void {
+        this.searchQueryChange.emit(query);
+    }
+
     getTaskClasses(task: Task): string {
         const classes = [`priority-${task.priority}`];
         if (task.completed) classes.push('completed');
         return classes.join(' ');
-    }
-
-    getFilterTitle(): string {
-        switch (this.filter()) {
-            case 'pending':
-                return 'Pending Tasks';
-            case 'completed':
-                return 'Completed Tasks';
-            case 'overdue':
-                return 'Overdue Tasks';
-            default:
-                return 'All Tasks';
-        }
     }
 
     getEmptyStateTitle(): string {
