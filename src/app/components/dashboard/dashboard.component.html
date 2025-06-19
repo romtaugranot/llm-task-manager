@@ -4,185 +4,27 @@
     <!-- Top Row: Overview and Tasks side by side -->
     <div class="top-row">
         <!-- Left: Stats Section -->
-        <div class="stats-section">
-            <div class="overview-content">
-                <h2 class="section-title">Overview</h2>
-                <div class="stats-content">
-                    <div class="stats-grid">
-                        <div class="stat-card completed">
-                            <div class="stat-content">
-                                <div class="stat-number">{{ taskStats().completed }}</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-icon">✓</div>
-                        </div>
-
-                        <div class="stat-card pending">
-                            <div class="stat-content">
-                                <div class="stat-number">{{ taskStats().pending }}</div>
-                                <div class="stat-label">Pending</div>
-                            </div>
-                            <div class="stat-icon">⏳</div>
-                        </div>
-
-                        <div class="stat-card overdue">
-                            <div class="stat-content">
-                                <div class="stat-number">{{ taskStats().overdue }}</div>
-                                <div class="stat-label">Overdue</div>
-                            </div>
-                            <div class="stat-icon">⚠️</div>
-                        </div>
-
-                        <div class="stat-card total">
-                            <div class="stat-content">
-                                <div class="stat-number">{{ taskStats().total }}</div>
-                                <div class="stat-label">Total Tasks</div>
-                            </div>
-                            <div class="stat-icon">📋</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="action-btn" (click)="markAllCompleted()">
-                    <span class="action-icon">✅</span>
-                    Mark All Done
-                </button>
-                <button class="action-btn" (click)="clearCompleted()">
-                    <span class="action-icon">🗑️</span>
-                    Clear Completed
-                </button>
-            </div>
-        </div>
+        <app-dashboard-stats
+            [taskStats]="taskStats()"
+            (markAllCompleted)="markAllCompleted()"
+            (clearCompleted)="clearCompleted()"
+        />
 
         <!-- Right: Tasks -->
-        <div class="tasks-section">
-            <div class="tasks-header">
-                <div class="tasks-header-left">
-                    <h2 class="section-title">
-                        {{ getFilterTitle() }}
-                        <span class="task-count">({{ filteredTasks().length }})</span>
-                    </h2>
-                </div>
-                <div class="tasks-header-right">
-                    <div class="filter-buttons">
-                        <button
-                            class="filter-btn"
-                            [class.active]="filter() === 'all'"
-                            (click)="setFilter('all')"
-                        >
-                            All
-                        </button>
-                        <button
-                            class="filter-btn"
-                            [class.active]="filter() === 'pending'"
-                            (click)="setFilter('pending')"
-                        >
-                            Pending
-                        </button>
-                        <button
-                            class="filter-btn"
-                            [class.active]="filter() === 'completed'"
-                            (click)="setFilter('completed')"
-                        >
-                            Completed
-                        </button>
-                        <button
-                            class="filter-btn"
-                            [class.active]="filter() === 'overdue'"
-                            (click)="setFilter('overdue')"
-                        >
-                            Overdue
-                        </button>
-                    </div>
-                    <select class="sort-select" [(ngModel)]="sortBy" (change)="setSortBy($event)">
-                        <option value="priority">Sort by Priority</option>
-                        <option value="dueDate">Sort by Due Date</option>
-                        <option value="category">Sort by Category</option>
-                    </select>
-                </div>
-            </div>
-
-            @if (filteredTasks().length > 0) {
-            <div class="task-list">
-                @for(task of filteredTasks(); track task.id) {
-                <div class="task-item" [class]="getTaskClasses(task)">
-                    <div
-                        class="task-checkbox"
-                        [class.checked]="task.completed"
-                        tabindex="0"
-                        role="button"
-                        (click)="toggleTask(task.id)"
-                    ></div>
-
-                    <div class="task-content">
-                        <div class="task-title">{{ task.title }}</div>
-                        @if(task.description) {
-                        <div class="task-description">
-                            {{ task.description }}
-                        </div>
-                        }
-                        <div class="task-meta">
-                            <span class="task-category" [class]="'category-' + task.category">
-                                {{ task.category | titlecase }}
-                            </span>
-                            <span class="task-priority" [class]="'priority-' + task.priority">
-                                {{ task.priority | titlecase }}
-                            </span>
-                            <span
-                                class="task-due-date"
-                                [class.overdue]="isOverdue(task)"
-                                *ngIf="task.dueDate"
-                            >
-                                {{ formatDueDate(task.dueDate) }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="task-actions">
-                        <button class="task-action-btn edit" (click)="editTask(task.id)">✏️</button>
-                        <button class="task-action-btn delete" (click)="deleteTask(task.id)">
-                            🗑️
-                        </button>
-                    </div>
-                </div>
-                }
-            </div>
-            } @else {
-
-            <div class="empty-state">
-                <div class="empty-state-icon">📝</div>
-                <h3>{{ getEmptyStateTitle() }}</h3>
-                <p>{{ getEmptyStateMessage() }}</p>
-            </div>
-            }
-        </div>
+        <app-dashboard-tasks
+            [tasks]="tasks()"
+            [filter]="filter()"
+            [sortBy]="sortBy()"
+            (toggleTask)="toggleTask($event)"
+            (editTask)="editTask($event)"
+            (deleteTask)="deleteTask($event)"
+            (filterChange)="setFilter($event)"
+            (sortChange)="setSortBy($event)"
+        />
     </div>
 
     <!-- Bottom Row: Add Task (full width) -->
     <div class="bottom-row">
-        <div class="add-task-section">
-            <h3 class="section-subtitle">Add New Task</h3>
-            <div class="add-task-input-container">
-                <input
-                    type="text"
-                    class="add-task-input"
-                    placeholder="Add a new task..."
-                    [(ngModel)]="newTaskTitle"
-                    (keyup.enter)="addQuickTask()"
-                    #taskInput
-                />
-                <button
-                    class="add-task-submit"
-                    (click)="addQuickTask()"
-                    [disabled]="!newTaskTitle.trim()"
-                >
-                    <span>+</span>
-                </button>
-            </div>
-            <button class="detailed-task-btn" (click)="openAddTaskModal()">
-                Add Detailed Task
-            </button>
-        </div>
+        <app-dashboard-add-task (taskAdded)="addTask($event)" />
     </div>
 </div>
