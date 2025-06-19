@@ -1,5 +1,4 @@
 <div class="add-task-section">
-    <h3 class="section-subtitle">Add New Task</h3>
     <div class="add-task-input-container">
         <input
             type="text"
@@ -13,82 +12,5 @@
             <span>+</span>
         </button>
     </div>
-    <button class="detailed-task-btn" (click)="openDetailedModal()">Add Detailed Task</button>
+    <button class="detailed-task-btn">Add Detailed Task</button>
 </div>
-
-<!-- Detailed Task Modal -->
-@if (showDetailedModal()) {
-<!-- <div class="modal-overlay" (click)="closeDetailedModal()">
-    <div class="modal" (click)="$event.stopPropagation()">
-        <h2>Add New Task</h2>
-        <form (ngSubmit)="submitDetailedTask()">
-            <div class="form-group">
-                <label class="form-label">Task Title *</label>
-                <input
-                    type="text"
-                    class="form-input"
-                    [(ngModel)]="detailedTask.title"
-                    name="title"
-                    required
-                />
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Description</label>
-                <textarea
-                    class="form-textarea"
-                    [(ngModel)]="detailedTask.description"
-                    name="description"
-                    placeholder="Optional description..."
-                ></textarea>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">Priority</label>
-                    <select class="form-select" [(ngModel)]="detailedTask.priority" name="priority">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                        <option value="urgent">Urgent</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Category</label>
-                    <select class="form-select" [(ngModel)]="detailedTask.category" name="category">
-                        <option value="personal">Personal</option>
-                        <option value="work">Work</option>
-                        <option value="fitness">Fitness</option>
-                        <option value="nutrition">Nutrition</option>
-                        <option value="wellness">Wellness</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Due Date</label>
-                <input
-                    type="datetime-local"
-                    class="form-input"
-                    [(ngModel)]="detailedTask.dueDate"
-                    name="dueDate"
-                />
-            </div>
-
-            <div class="form-actions">
-                <button type="button" class="btn btn-secondary" (click)="closeDetailedModal()">
-                    Cancel
-                </button>
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                    [disabled]="!detailedTask.title.trim()"
-                >
-                    Add Task
-                </button>
-            </div>
-        </form>
-    </div>
-</div> -->
-}

@@ -1,16 +1,13 @@
 <app-navbar />
 
 <div class="dashboard-container">
-    <!-- Top Row: Overview and Tasks side by side -->
     <div class="top-row">
-        <!-- Left: Stats Section -->
         <app-dashboard-stats
             [taskStats]="taskStats()"
             (markAllCompleted)="markAllCompleted()"
             (clearCompleted)="clearCompleted()"
         />
 
-        <!-- Right: Tasks -->
         <app-dashboard-tasks
             [tasks]="tasks()"
             [filter]="filter()"
@@ -25,7 +22,6 @@
         />
     </div>
 
-    <!-- Bottom Row: Add Task (full width) -->
     <div class="bottom-row">
         <app-dashboard-add-task (taskAdded)="addTask($event)" />
     </div>
