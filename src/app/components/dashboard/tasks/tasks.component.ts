@@ -37,6 +37,18 @@ export class DashboardTasksComponent {
         this.searchQueryChange.emit(query);
     }
 
+    onToggleTask(taskId: string): void {
+        this.toggleTask.emit(taskId);
+    }
+
+    onEditTask(taskId: string): void {
+        this.editTask.emit(taskId);
+    }
+
+    onDeleteTask(taskId: string): void {
+        this.deleteTask.emit(taskId);
+    }
+
     getTaskClasses(task: Task): string {
         const classes = [`priority-${task.priority}`];
         if (task.completed) classes.push('completed');

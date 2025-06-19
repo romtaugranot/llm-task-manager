@@ -129,6 +129,18 @@ export class TaskListComponent {
         return date.toLocaleDateString();
     }
 
+    onToggleTask(taskId: string): void {
+        this.toggleTask.emit(taskId);
+    }
+
+    onEditTask(taskId: string): void {
+        this.editTask.emit(taskId);
+    }
+
+    onDeleteTask(taskId: string): void {
+        this.deleteTask.emit(taskId);
+    }
+
     private sortTasks(tasks: Task[]): Task[] {
         return [...tasks].sort((a, b) => {
             switch (this.sortBy()) {

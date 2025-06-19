@@ -7,7 +7,7 @@
             [class.checked]="task.completed"
             tabindex="0"
             role="button"
-            (click)="toggleTask.emit(task.id)"
+            (click)="onToggleTask(task.id)"
         ></div>
 
         <div class="task-content">
@@ -31,12 +31,12 @@
         </div>
 
         <div class="task-actions">
-            <button class="task-action-btn edit" (click)="editTask.emit(task.id)" title="Edit task">
+            <button class="task-action-btn edit" (click)="onEditTask(task.id)" title="Edit task">
                 ✏️
             </button>
             <button
                 class="task-action-btn delete"
-                (click)="deleteTask.emit(task.id)"
+                (click)="onDeleteTask(task.id)"
                 title="Delete task"
             >
                 🗑️

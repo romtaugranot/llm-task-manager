@@ -14,5 +14,8 @@
         [filter]="filter()"
         [sortBy]="sortBy()"
         [searchQuery]="searchQuery()"
+        (toggleTask)="onToggleTask($event)"
+        (editTask)="onEditTask($event)"
+        (deleteTask)="onDeleteTask($event)"
     />
 </div>
