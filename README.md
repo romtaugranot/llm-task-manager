@@ -1,59 +1,175 @@
-# TaskManager
+# 🚀 TaskManager - AI-Powered Task Management
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+> **Intelligent task management that learns from you**
 
-## Development server
+TaskManager is a next-generation task management application that leverages artificial intelligence to automatically enhance your tasks with smart categorization, priority assessment, and personalized scheduling based on your work patterns and preferences.
 
-To start a local development server, run:
+## ✨ Key Features
 
-```bash
-ng serve
+### 🤖 **AI-Powered Task Enhancement**
+
+-   **Smart Task Completion**: Simply type what you need to do - our AI analyzes your input alongside your questionnaire responses and existing tasks to automatically determine:
+    -   Priority level (Low, Medium, High, Urgent)
+    -   Category (Fitness, Nutrition, Wellness, Personal, Work)
+    -   Optimal due dates
+    -   Detailed descriptions and context
+
+### 📊 **Comprehensive Dashboard**
+
+-   Real-time task statistics and completion rates
+
+### 📅 **Intelligent Calendar Integration**
+
+-   Multiple view modes (Day, Week, Month)
+-   Visual task representation with color-coded categories
+-   Seamless task-to-event conversion
+-   Interactive calendar navigation
+-   Task completion tracking within calendar view
+
+### 🎯 **Personalization Engine**
+
+-   **Initial Questionnaire**: 10 comprehensive questions about your work style, productivity patterns, and preferences
+-   **Adaptive Learning**: The AI continuously learns from your task completion patterns
+-   **Personalized Recommendations**: Task suggestions based on your energy levels, work style, and historical data
+
+### 🎨 **Modern UI/UX**
+
+-   Glassmorphism design with backdrop blur effects
+-   Smooth animations and micro-interactions
+-   Dark theme optimized for extended use
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+-   **Angular 19** - Latest Angular framework with standalone components
+-   **TypeScript** - Type-safe development
+-   **SCSS** - Advanced styling with CSS variables and mixins
+-   **Angular Animations** - Smooth page transitions and micro-interactions
+-   **RxJS** - Reactive programming for state management
+
+### Backend
+
+-   **NestJS** - Scalable Node.js backend framework
+-   **Groq Cloud API** - High-performance LLM inference for task enhancement
+-   **RESTful API** - Clean and efficient data communication
+-   **Real-time Updates** - Live task synchronization
+
+## 📱 Application Flow
+
+### 1. **User Onboarding**
+
+```
+Sign Up → Personalization Questionnaire → Dashboard
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. **Task Creation Process**
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+User Input: "Prepare presentation for client meeting"
+      ↓
+AI Processing: Analyzes user preferences + existing tasks
+      ↓
+Enhanced Task:
+- Priority: High
+- Category: Work
+- Due Date: Based on user's productive hours
+- Description: Auto-generated context and subtasks
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3. **Smart Categorization**
 
-```bash
-ng generate --help
-```
+The AI automatically categorizes tasks into:
 
-## Building
+-   💪 **Fitness** - Exercise, sports, physical activities
+-   🥗 **Nutrition** - Meal planning, dietary goals
+-   🧘 **Wellness** - Mental health, relaxation, self-care
+-   👤 **Personal** - Life administration, relationships
+-   💼 **Work** - Professional tasks and projects
 
-To build the project run:
+## 🎯 AI-Powered Features Deep Dive
 
-```bash
-ng build
-```
+### **Questionnaire Analysis**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The initial 10-question assessment captures:
 
-## Running unit tests
+-   **Productivity Patterns** - Peak performance hours
+-   **Work Style** - Sequential vs. batch processing
+-   **Priority Methods** - Deadline vs. importance-driven
+-   **Focus Preferences** - Work session lengths
+-   **Motivation Triggers** - What drives task completion
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### **Intelligent Task Enhancement**
 
-```bash
-ng test
-```
+When you add a task like "gym workout", the AI considers:
 
-## Running end-to-end tests
+-   Your answered preference for morning vs. evening exercise
+-   Your typical workout duration preferences
+-   Your current fitness-related tasks
+-   Your historical completion patterns
 
-For end-to-end (e2e) testing, run:
+Result: A fully formed task with appropriate priority, timing, and context.
 
-```bash
-ng e2e
-```
+### **Adaptive Learning**
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The system continuously improves by:
 
-## Additional Resources
+-   Tracking task completion patterns
+-   Learning from your priority adjustments
+-   Analyzing optimal task scheduling
+-   Adapting to seasonal and weekly patterns
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🗺️ Roadmap
+
+### **Phase 1: Core Enhancement** (Current)
+
+-   [x] Basic AI task enhancement
+-   [x] Dashboard and calendar views
+-   [x] User questionnaire system
+-   [ ] NestJS backend API integration
+-   [ ] User authentication with JWT
+-   [ ] Groq Cloud LLM integration
+
+### **Phase 2: Advanced AI**
+
+-   [ ] **Smart Time Blocking** - AI suggests optimal time slots for tasks
+-   [ ] **Natural Language Due Dates** - "next Friday" → automatic date parsing
+-   [ ] **Contextual Task Relationships** - AI identifies task dependencies
+-   [ ] **Energy-Based Scheduling** - Match tasks to your energy patterns
+-   [ ] **Smart Notifications** - AI-powered reminders at optimal times
+-   [ ] **Voice Input** - Speak your tasks, AI handles the rest
+
+### **Phase 3: Productivity Intelligence**
+
+-   [ ] **Productivity Analytics** - Deep insights into your work patterns
+-   [ ] **Habit Formation Tracking** - AI identifies and reinforces positive patterns
+-   [ ] **Workload Optimization** - Prevent burnout with intelligent task distribution
+-   [ ] **Focus Session Management** - Pomodoro technique with AI-suggested breaks
+-   [ ] **Goal Decomposition** - Break large goals into manageable tasks automatically
+-   [ ] **Seasonal Pattern Recognition** - Adapt to your changing productivity cycles
+
+### **Phase 4: Collaboration & Integration**
+
+-   [ ] **AI-Powered Team Coordination** - Smart task delegation and workload balancing
+-   [ ] **Cross-Platform Sync** - Calendar, email, and project management integrations
+-   [ ] **Mobile App** - Native iOS/Android with offline AI capabilities
+-   [ ] **Browser Extension** - Capture tasks from any webpage
+-   [ ] **API Ecosystem** - Third-party integrations and webhooks
+-   [ ] **Advanced Analytics Dashboard** - Team productivity insights and reporting
+
+### **Phase 5: Next-Gen Features** (Long-term Vision)
+
+-   [ ] **Predictive Task Creation** - AI suggests tasks before you think of them
+-   [ ] **Multi-Modal Input** - Photo, audio, and document-based task creation
+-   [ ] **AI Coaching** - Personalized productivity coaching and recommendations
+-   [ ] **Collaborative AI** - Team-wide AI that learns from group dynamics
+-   [ ] **Workflow Automation** - AI-powered task sequences and triggers
+-   [ ] **Mental Health Integration** - Stress detection and workload adjustment
+
+---
+
+<div align="center">
+
+**Built with ❤️ using Angular, NestJS and AI**
+
+</div>
