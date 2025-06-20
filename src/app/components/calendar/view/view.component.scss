@@ -5,6 +5,32 @@
     overflow: hidden;
 }
 
+// Custom scrollbar styles for consistency
+.scrollable-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.4) rgba(255, 255, 255, 0.05);
+}
+
+.scrollable-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.6) 0%, rgba(124, 58, 237, 0.4) 100%);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.8) 0%, rgba(124, 58, 237, 0.6) 100%);
+}
+
 // Month View Styles
 .month-view {
     height: 100%;
@@ -129,6 +155,10 @@
     width: 80px;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.02);
+    position: sticky;
+    left: 0;
+    z-index: 2;
 }
 
 .time-slot {
@@ -146,6 +176,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     overflow-y: auto;
+    @extend .scrollable-content;
 }
 
 .day-column {
@@ -261,6 +292,7 @@
     position: relative;
     overflow-y: auto;
     height: calc(24 * 60px);
+    @extend .scrollable-content;
 }
 
 .day-event {

@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../shared';
 import { Task } from '../dashboard/interfaces';
 import { CalendarHeaderComponent } from './header/header.component';
 import { CalendarViewComponent } from './view/view.component';
+import { DashboardAddTaskComponent } from '../dashboard/add-task/add-task.component';
 
 export type CalendarView = 'month' | 'week' | 'day';
 
@@ -23,7 +24,13 @@ export interface CalendarEvent {
 @Component({
     selector: 'app-calendar',
     standalone: true,
-    imports: [CommonModule, NavbarComponent, CalendarHeaderComponent, CalendarViewComponent],
+    imports: [
+        CommonModule,
+        NavbarComponent,
+        CalendarHeaderComponent,
+        CalendarViewComponent,
+        DashboardAddTaskComponent,
+    ],
     templateUrl: './calendar.component.html',
     styleUrl: './calendar.component.scss',
 })
@@ -185,6 +192,11 @@ export class CalendarComponent {
 
     selectDate(date: Date): void {
         this.selectedDate.set(date);
+        // When clicking on a date in month or week view, switch to day view
+        if (this.selectedView() === 'month' || this.selectedView() === 'week') {
+            this.currentDate.set(date);
+            this.selectedView.set('day');
+        }
     }
 
     // Event management
@@ -208,6 +220,10 @@ export class CalendarComponent {
     }
 
     // Task management
+    addTask(task: Task): void {
+        this.tasks.update((tasks) => [...tasks, task]);
+    }
+
     toggleTask(taskId: string): void {
         this.tasks.update((tasks) =>
             tasks.map((task) =>

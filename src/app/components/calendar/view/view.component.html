@@ -53,7 +53,7 @@
             <div class="time-slot">{{ hour }}</div>
             }
         </div>
-        <div class="week-days">
+        <div class="week-days scrollable-content">
             @for (day of weekDaysView(); track day.date) {
             <div class="day-column">
                 <div class="day-header">
@@ -104,7 +104,7 @@
                 <div class="time-slot">{{ hour }}</div>
                 }
             </div>
-            <div class="day-events-column">
+            <div class="day-events-column scrollable-content">
                 @for (event of dayEvents(); track event.id) {
                 <div
                     class="day-event"

@@ -1,6 +1,6 @@
 .calendar-container {
     display: flex;
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 80px 24px 16px;
     gap: 24px;
@@ -27,6 +27,43 @@
     overflow: hidden;
 }
 
+.calendar-footer {
+    flex-shrink: 0;
+    padding: 16px 24px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
+
+    // Override add-task styles for calendar
+    ::ng-deep .add-task-section {
+        background: transparent;
+        border: none;
+        padding: 0;
+        backdrop-filter: none;
+        border-radius: 0;
+    }
+
+    ::ng-deep .add-task-input-container {
+        gap: 8px;
+    }
+
+    ::ng-deep .add-task-input {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    ::ng-deep .add-task-input:focus {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    ::ng-deep .add-task-submit {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
 // Responsive design
 @media (max-width: 1200px) {
     .calendar-container {
@@ -37,7 +74,8 @@
 
     .calendar-main {
         order: 2;
-        height: 60vh;
+        height: auto;
+        flex: 1;
     }
 }
 
@@ -47,7 +85,18 @@
         gap: 12px;
     }
 
-    .calendar-main {
-        height: 55vh;
+    .calendar-footer {
+        padding: 12px 16px 16px;
+
+        ::ng-deep .add-task-input {
+            padding: 10px 14px;
+            font-size: 14px;
+        }
+
+        ::ng-deep .add-task-submit {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
     }
 }

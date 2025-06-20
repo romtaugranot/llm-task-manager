@@ -64,9 +64,4 @@ export class CalendarHeaderComponent {
     goToToday(): void {
         this.dateChange.emit(new Date());
     }
-
-    openAddEvent(): void {
-        // TODO: Implement add event modal
-        console.log('Open add event modal');
-    }
 }
