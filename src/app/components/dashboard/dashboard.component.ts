@@ -6,6 +6,7 @@ import { NavbarComponent, Task, TaskStats } from '../../shared';
 import { DashboardStatsComponent } from './stats/stats.component';
 import { DashboardTasksComponent } from './tasks/tasks.component';
 import { DashboardAddTaskComponent } from './add-task/add-task.component';
+import { fadeInUp, fadeInLeft, fadeInRight, slideDown } from '../../shared/animations';
 
 @Component({
     selector: 'app-dashboard',
@@ -20,6 +21,7 @@ import { DashboardAddTaskComponent } from './add-task/add-task.component';
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
+    animations: [fadeInUp, fadeInLeft, fadeInRight, slideDown]
 })
 export class DashboardComponent {
     //TODO: replace with a service for real data

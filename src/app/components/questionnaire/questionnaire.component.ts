@@ -4,6 +4,7 @@ import { GET_STARTED_QUESTIONS, Question, NavbarComponent } from '../../shared';
 import { ProgressBarComponent } from './progress-bar';
 import { QuestionContainerComponent } from './question-container';
 import { NavigationContainerComponent } from './navigation-container/navigation-container.component';
+import { fadeInUp, fadeInLeft, fadeInRight, scaleIn } from '../../shared/animations';
 
 @Component({
     selector: 'app-questionnaire',
@@ -16,6 +17,7 @@ import { NavigationContainerComponent } from './navigation-container/navigation-
     ],
     templateUrl: './questionnaire.component.html',
     styleUrl: './questionnaire.component.scss',
+    animations: [fadeInUp, fadeInLeft, fadeInRight, scaleIn]
 })
 export class QuestionnaireComponent {
     currentQuestionIndex = signal<number>(0);

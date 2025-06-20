@@ -1,12 +1,14 @@
 import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../../shared';
+import { fadeInUp, staggerIn, scaleInOut } from '../../../../shared/animations';
 
 @Component({
     selector: 'app-dashboard-task-list',
     imports: [CommonModule],
     templateUrl: './task-list.component.html',
     styleUrl: './task-list.component.scss',
+    animations: [fadeInUp, staggerIn, scaleInOut]
 })
 export class TaskListComponent {
     tasks = input.required<Task[]>();

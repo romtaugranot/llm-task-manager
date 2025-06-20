@@ -1,7 +1,7 @@
 @if (displayedTasks().length > 0) {
-<div class="task-list">
+<div class="task-list" [@staggerIn]>
     @for(task of displayedTasks(); track task.id) {
-    <div class="task-item" [class]="getTaskClasses(task)">
+    <div class="task-item" [class]="getTaskClasses(task)" [@scaleInOut]>
         <div
             class="task-checkbox"
             [class.checked]="task.completed"
@@ -48,7 +48,7 @@
     }
 </div>
 } @else {
-<div class="empty-state">
+<div class="empty-state" [@fadeInUp]>
     <div class="empty-state-icon">📝</div>
     <h3>{{ getEmptyStateTitle() }}</h3>
     <p>{{ getEmptyStateMessage() }}</p>

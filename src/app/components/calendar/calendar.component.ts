@@ -4,6 +4,7 @@ import { NavbarComponent, Task } from '../../shared';
 import { CalendarHeaderComponent } from './header/header.component';
 import { CalendarViewComponent } from './view/view.component';
 import { DashboardAddTaskComponent } from '../dashboard/add-task/add-task.component';
+import { fadeInUp, fadeInLeft, fadeInRight, slideDown } from '../../shared/animations';
 
 export type CalendarView = 'month' | 'week' | 'day';
 
@@ -32,6 +33,7 @@ export interface CalendarEvent {
     ],
     templateUrl: './calendar.component.html',
     styleUrl: './calendar.component.scss',
+    animations: [fadeInUp, fadeInLeft, fadeInRight, slideDown]
 })
 export class CalendarComponent {
     currentDate = signal<Date>(new Date());

@@ -1,4 +1,4 @@
-<app-navbar />
+<app-navbar [@fadeInUp] />
 
 <div class="dashboard-container">
     <div class="top-row">
@@ -6,6 +6,7 @@
             [taskStats]="taskStats()"
             (markAllCompleted)="markAllCompleted()"
             (clearCompleted)="clearCompleted()"
+            [@fadeInLeft]
         />
 
         <app-dashboard-tasks
@@ -19,10 +20,11 @@
             (filterChange)="setFilter($event)"
             (sortChange)="setSortBy($event)"
             (searchQueryChange)="setSearchChange($event)"
+            [@fadeInRight]
         />
     </div>
 
     <div class="bottom-row">
-        <app-add-task (taskAdded)="addTask($event)" />
+        <app-add-task (taskAdded)="addTask($event)" [@slideDown] />
     </div>
 </div>

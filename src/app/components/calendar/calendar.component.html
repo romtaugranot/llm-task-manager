@@ -1,13 +1,14 @@
-<app-navbar />
+<app-navbar [@fadeInUp] />
 
 <div class="calendar-container">
-    <div class="calendar-main">
+    <div class="calendar-main" [@fadeInLeft]>
         <app-calendar-header
             [currentDate]="currentDate()"
             [selectedView]="selectedView()"
             [currentPeriod]="getCurrentPeriod()"
             (viewChange)="setView($event)"
             (dateChange)="navigateToDate($event)"
+            [@fadeInUp]
         />
 
         <div class="calendar-content">
@@ -20,11 +21,12 @@
                 (eventUpdate)="updateEvent($event.id, $event.updates)"
                 (eventDelete)="deleteEvent($event)"
                 (taskToggle)="toggleTask($event)"
+                [@fadeInRight]
             />
         </div>
 
         <div class="calendar-footer">
-            <app-add-task (taskAdded)="addTask($event)" />
+            <app-add-task (taskAdded)="addTask($event)" [@slideDown] />
         </div>
     </div>
 </div>

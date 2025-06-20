@@ -1,17 +1,22 @@
-<app-navbar />
+<app-navbar [@fadeInUp] />
 
-<div class="questionnaire-card">
-    <app-progress-bar [questions]="questions" [currentQuestionIndex]="currentQuestionIndex()" />
+<div class="questionnaire-card" [@scaleIn]>
+    <app-progress-bar 
+        [questions]="questions" 
+        [currentQuestionIndex]="currentQuestionIndex()" 
+        [@fadeInLeft] />
 
     <app-question-container
         [answers]="answers"
         [currentQuestionIndex]="currentQuestionIndex()"
         [questions]="questions"
+        [@fadeInUp]
     />
 
     <app-navigation-container
         [answers]="answers"
         [questions]="questions"
         (questionIndex)="onQuestionIndex($event)"
+        [@fadeInRight]
     />
 </div>

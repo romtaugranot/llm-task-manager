@@ -1,11 +1,13 @@
 import { Component, HostListener, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
+import { slideDown, scaleInOut } from '../../../animations';
 
 @Component({
     selector: 'app-navbar-user',
     imports: [],
     templateUrl: './user.component.html',
     styleUrl: './user.component.scss',
+    animations: [slideDown, scaleInOut]
 })
 export class NavbarUserComponent {
     router = inject(Router);
