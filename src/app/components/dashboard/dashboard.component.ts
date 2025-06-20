@@ -1,23 +1,11 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from '../../shared';
-import { TaskStats } from './interfaces';
+import { NavbarComponent, Task, TaskStats } from '../../shared';
+
 import { DashboardStatsComponent } from './stats/stats.component';
 import { DashboardTasksComponent } from './tasks/tasks.component';
 import { DashboardAddTaskComponent } from './add-task/add-task.component';
-
-export interface Task {
-    id: string;
-    title: string;
-    description?: string;
-    priority: 'low' | 'medium' | 'high' | 'urgent';
-    category: 'fitness' | 'nutrition' | 'wellness' | 'personal' | 'work';
-    completed: boolean;
-    dueDate?: Date;
-    createdAt: Date;
-    completedAt?: Date;
-}
 
 @Component({
     selector: 'app-dashboard',

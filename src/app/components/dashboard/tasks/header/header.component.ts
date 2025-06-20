@@ -1,9 +1,9 @@
 import { Component, computed, input, output } from '@angular/core';
-import { Task } from '../../interfaces';
 import { FormsModule } from '@angular/forms';
 import { FilterComponent } from './filter/filter.component';
 import { SearchComponent } from './search/search.component';
 import { SortComponent } from './sort/sort.component';
+import { Task } from '../../../../shared';
 
 @Component({
     selector: 'app-dashboard-tasks-header',

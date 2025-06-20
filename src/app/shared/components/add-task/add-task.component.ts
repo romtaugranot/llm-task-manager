@@ -1,10 +1,10 @@
 import { Component, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Task } from '../../../shared';
+import { Task } from '../../interfaces';
 
 @Component({
-    selector: 'app-add-task',
+    selector: 'app-dashboard-add-task',
     standalone: true,
     imports: [CommonModule, FormsModule],
     templateUrl: './add-task.component.html',

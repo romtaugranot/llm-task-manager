@@ -1,7 +1,6 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../shared';
-import { Task } from '../dashboard/interfaces';
+import { NavbarComponent, Task } from '../../shared';
 import { CalendarHeaderComponent } from './header/header.component';
 import { CalendarViewComponent } from './view/view.component';
 import { DashboardAddTaskComponent } from '../dashboard/add-task/add-task.component';

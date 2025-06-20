@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
-import { Task } from '../interfaces';
 import { TasksCardHeaderComponent } from './header/header.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { Task } from '../../../shared';
 
 @Component({
     selector: 'app-dashboard-tasks',

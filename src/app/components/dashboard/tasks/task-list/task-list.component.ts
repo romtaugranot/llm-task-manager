@@ -1,6 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
-import { Task } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../../../shared';
 
 @Component({
     selector: 'app-dashboard-task-list',
