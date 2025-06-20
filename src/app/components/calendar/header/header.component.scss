@@ -2,38 +2,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 28px 20px;
+    padding: 28px 32px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
     flex-shrink: 0;
+    gap: 32px; // Added gap between sections
 }
 
 .calendar-title-section {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 32px; // Increased gap between title and nav
+    flex: 1;
 }
 
 .calendar-title {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
     color: white;
     margin: 0;
     letter-spacing: -0.5px;
-    min-width: 200px;
+    min-width: 220px;
 }
 
 .calendar-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px; // Increased gap between nav buttons
 }
 
 .nav-btn {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
@@ -41,7 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -53,31 +55,32 @@
 
 .today-btn {
     width: auto;
-    padding: 0 12px;
-    min-width: 60px;
+    padding: 0 16px;
+    min-width: 70px;
 }
 
 .calendar-controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px; // Increased gap between controls
+    flex-shrink: 0;
 }
 
 .view-controls {
     display: flex;
     background: rgba(255, 255, 255, 0.05);
     padding: 4px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .view-btn {
-    padding: 8px 16px;
+    padding: 10px 18px;
     background: transparent;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -98,11 +101,11 @@
 .add-event-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 10px;
+    padding: 12px 20px;
     background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -116,20 +119,21 @@
 }
 
 // Responsive
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .calendar-header {
         flex-direction: column;
-        gap: 16px;
-        padding: 20px 20px 16px;
+        gap: 20px;
+        padding: 24px 24px 20px;
     }
 
     .calendar-title-section {
         width: 100%;
         justify-content: space-between;
+        gap: 20px;
     }
 
     .calendar-title {
-        font-size: 20px;
+        font-size: 22px;
         min-width: auto;
         flex: 1;
     }
@@ -137,7 +141,7 @@
     .calendar-controls {
         width: 100%;
         justify-content: space-between;
-        gap: 12px;
+        gap: 16px;
     }
 
     .view-controls {
@@ -148,10 +152,39 @@
     .view-btn {
         flex: 1;
         text-align: center;
+        padding: 8px 12px;
     }
 
     .add-event-btn {
-        padding: 8px 12px;
+        padding: 10px 16px;
         font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-header {
+        padding: 20px 20px 16px;
+    }
+
+    .calendar-title-section {
+        gap: 16px;
+    }
+
+    .calendar-nav {
+        gap: 8px;
+    }
+
+    .nav-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .today-btn {
+        min-width: 60px;
+        padding: 0 12px;
+    }
+
+    .calendar-controls {
+        gap: 12px;
     }
 }

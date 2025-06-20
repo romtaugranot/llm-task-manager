@@ -23,13 +23,4 @@
             />
         </div>
     </div>
-
-    <app-calendar-sidebar
-        [selectedDate]="selectedDate()"
-        [selectedDateEvents]="selectedDateEvents()"
-        [upcomingEvents]="upcomingEvents()"
-        [tasks]="tasks()"
-        (eventAdd)="addEvent($event)"
-        (taskToggle)="toggleTask($event)"
-    />
 </div>

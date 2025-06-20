@@ -4,7 +4,6 @@ import { NavbarComponent } from '../../shared';
 import { Task } from '../dashboard/interfaces';
 import { CalendarHeaderComponent } from './header/header.component';
 import { CalendarViewComponent } from './view/view.component';
-import { CalendarSidebarComponent } from './sidebar/sidebar.component';
 
 export type CalendarView = 'month' | 'week' | 'day';
 
@@ -24,13 +23,7 @@ export interface CalendarEvent {
 @Component({
     selector: 'app-calendar',
     standalone: true,
-    imports: [
-        CommonModule,
-        NavbarComponent,
-        CalendarHeaderComponent,
-        CalendarViewComponent,
-        CalendarSidebarComponent,
-    ],
+    imports: [CommonModule, NavbarComponent, CalendarHeaderComponent, CalendarViewComponent],
     templateUrl: './calendar.component.html',
     styleUrl: './calendar.component.scss',
 })

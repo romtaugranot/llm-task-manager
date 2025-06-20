@@ -39,12 +39,6 @@
         order: 2;
         height: 60vh;
     }
-
-    app-calendar-sidebar {
-        order: 1;
-        height: auto;
-        max-height: 35vh;
-    }
 }
 
 @media (max-width: 768px) {
@@ -55,9 +49,5 @@
 
     .calendar-main {
         height: 55vh;
-    }
-
-    app-calendar-sidebar {
-        max-height: 40vh;
     }
 }
