@@ -102,6 +102,27 @@ export class CalendarComponent {
             dueDate: new Date(Date.now() + 7200000), // 2 hours from now
             createdAt: new Date(),
         },
+        // Add some overlapping events for testing
+        {
+            id: '7',
+            title: 'Client call',
+            description: 'Discuss project requirements',
+            priority: 'high',
+            category: 'work',
+            completed: false,
+            dueDate: new Date(Date.now() + 7200000), // Same time as standup
+            createdAt: new Date(),
+        },
+        {
+            id: '8',
+            title: 'Lunch break',
+            description: 'Team lunch',
+            priority: 'low',
+            category: 'personal',
+            completed: false,
+            dueDate: new Date(Date.now() + 14400000), // 4 hours from now
+            createdAt: new Date(),
+        },
     ]);
 
     // Convert tasks to calendar events
@@ -127,7 +148,7 @@ export class CalendarComponent {
             }
         });
 
-        // Add some example events
+        // Add some example events with overlaps
         const today = new Date();
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
@@ -139,7 +160,7 @@ export class CalendarComponent {
             startDate: new Date(today.getTime() + 9 * 60 * 60 * 1000), // 9 AM today
             endDate: new Date(today.getTime() + 10 * 60 * 60 * 1000), // 10 AM today
             allDay: false,
-            color: '#4fc3f7', // Less vibrant cyan
+            color: '#4fc3f7',
             category: 'personal',
             type: 'event',
         });
@@ -151,35 +172,25 @@ export class CalendarComponent {
             startDate: new Date(tomorrow.getTime() + 18 * 60 * 60 * 1000), // 6 PM tomorrow
             endDate: new Date(tomorrow.getTime() + 19.5 * 60 * 60 * 1000), // 7:30 PM tomorrow
             allDay: false,
-            color: '#ba68c8', // Less vibrant purple
+            color: '#ba68c8',
             category: 'wellness',
             type: 'event',
         });
 
-        return events.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
-    });
-
-    // Get events for selected date
-    selectedDateEvents = computed(() => {
-        const selected = this.selectedDate();
-        if (!selected) return [];
-
-        return this.calendarEvents().filter((event) => {
-            const eventDate = new Date(event.startDate);
-            return eventDate.toDateString() === selected.toDateString();
+        // Add overlapping events for testing
+        events.push({
+            id: 'event-3',
+            title: 'Coffee Meeting',
+            description: 'Catch up with colleague',
+            startDate: new Date(today.getTime() + 9.5 * 60 * 60 * 1000), // 9:30 AM today (overlaps with doctor)
+            endDate: new Date(today.getTime() + 10.5 * 60 * 60 * 1000), // 10:30 AM today
+            allDay: false,
+            color: '#ffb74d',
+            category: 'work',
+            type: 'event',
         });
-    });
 
-    // Get upcoming events (next 7 days)
-    upcomingEvents = computed(() => {
-        const now = new Date();
-        const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-        return this.calendarEvents()
-            .filter((event) => {
-                return event.startDate >= now && event.startDate <= sevenDaysFromNow;
-            })
-            .slice(0, 5); // Limit to 5 upcoming events
+        return events.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
     });
 
     // Navigation methods
@@ -189,6 +200,14 @@ export class CalendarComponent {
 
     setView(view: CalendarView): void {
         this.selectedView.set(view);
+        
+        // Auto-scroll to current hour when switching to day or week view
+        if (view === 'day' || view === 'week') {
+            // Small delay to ensure the view has rendered
+            setTimeout(() => {
+                // The scroll logic is now handled in the individual view components
+            }, 100);
+        }
     }
 
     selectDate(date: Date): void {
@@ -242,11 +261,11 @@ export class CalendarComponent {
     // Utility methods
     private getCategoryColor(category: string): string {
         const colors = {
-            fitness: '#e57373', // Less vibrant red
-            nutrition: '#81c784', // Less vibrant green
-            wellness: '#ba68c8', // Less vibrant purple
-            personal: '#4fc3f7', // Less vibrant cyan
-            work: '#ffb74d', // Less vibrant orange
+            fitness: '#e57373',
+            nutrition: '#81c784',
+            wellness: '#ba68c8',
+            personal: '#4fc3f7',
+            work: '#ffb74d',
         };
         return colors[category as keyof typeof colors] || '#90a4ae';
     }
@@ -260,6 +279,7 @@ export class CalendarComponent {
         startOfWeek.setDate(date.getDate() - date.getDay());
         const endOfWeek = new Date(startOfWeek);
         endOfWeek.setDate(startOfWeek.getDate() + 6);
+        
         switch (view) {
             case 'month':
                 return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

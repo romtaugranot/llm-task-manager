@@ -1,0 +1,67 @@
+<div class="week-view">
+    <div class="week-view-content" #weekViewContent>
+        <div class="time-column">
+            @for (hour of hours; track hour) {
+            <div class="time-slot" [class.current-hour]="isCurrentHour($index)">
+                <span class="time-label">{{ hour }}</span>
+            </div>
+            }
+        </div>
+        <div class="week-days">
+            @for (day of weekDaysView(); track day.date) {
+            <div class="day-column">
+                <div class="day-header">
+                    <div class="day-name">{{ getDayName(day.date) }}</div>
+                    <div
+                        class="day-number"
+                        [class.today]="isToday(day.date)"
+                        [class.selected]="isSelected(day.date)"
+                        (click)="selectDate(day.date)"
+                        (keyup.enter)="selectDate(day.date)"
+                        tabindex="0"
+                        role="button"
+                    >
+                        {{ day.date.getDate() }}
+                    </div>
+                </div>
+                <div class="day-events">
+                    <div class="hour-grid">
+                        @for (hour of hours; track $index) {
+                        <div class="hour-line" [class.current-hour]="isCurrentHour($index)"></div>
+                        }
+                    </div>
+                    @for (event of day.events; track event.id) {
+                    <div
+                        class="week-event"
+                        [style.background-color]="event.color"
+                        [style.top.px]="getEventTop(event)"
+                        [style.height.px]="getEventHeight(event)"
+                        [style.left.px]="getEventLeft(event, day.events)"
+                        [style.width.px]="getEventWidth(event, day.events)"
+                        [style.z-index]="getEventZIndex(event)"
+                        (click)="selectEvent(event)"
+                        (keyup.enter)="selectEvent(event)"
+                        tabindex="0"
+                        [title]="getEventTooltip(event)"
+                    >
+                        <div class="event-content">
+                            <div class="event-title">{{ event.title }}</div>
+                            @if (getEventHeight(event) > 40) {
+                            <div class="event-time">{{ formatEventTime(event) }}</div>
+                            }
+                        </div>
+                    </div>
+                    }
+                    <!-- Current time indicator for today -->
+                    @if (isToday(day.date)) {
+                    <div class="current-time-indicator" [style.top.px]="getCurrentTimePosition()">
+                        <div class="time-dot"></div>
+                        <div class="time-line"></div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
