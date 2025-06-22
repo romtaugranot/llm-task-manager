@@ -151,14 +151,18 @@
     overflow: hidden;
 }
 
+.week-view-content {
+    flex: 1;
+    display: flex;
+    overflow-y: auto;
+    @extend .scrollable-content;
+}
+
 .time-column {
     width: 80px;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
     background: rgba(255, 255, 255, 0.02);
-    position: sticky;
-    left: 0;
-    z-index: 2;
 }
 
 .time-slot {
@@ -175,8 +179,6 @@
     flex: 1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    overflow-y: auto;
-    @extend .scrollable-content;
 }
 
 .day-column {
@@ -284,15 +286,21 @@
 .day-content {
     flex: 1;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+
+.day-view-content {
+    flex: 1;
+    display: flex;
+    overflow-y: auto;
+    @extend .scrollable-content;
 }
 
 .day-events-column {
     flex: 1;
     position: relative;
-    overflow-y: auto;
     height: calc(24 * 60px);
-    @extend .scrollable-content;
 }
 
 .day-event {
@@ -376,10 +384,6 @@
     .day-event {
         padding: 2px 4px;
         font-size: 10px;
-    }
-
-    .day-events-column {
-        height: calc(24 * 50px);
     }
 
     .day-column .day-events {

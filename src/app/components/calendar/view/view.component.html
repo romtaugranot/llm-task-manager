@@ -48,46 +48,48 @@
     <!-- Week View -->
     @if (selectedView() === 'week') {
     <div class="week-view">
-        <div class="time-column">
-            @for (hour of hours; track hour) {
-            <div class="time-slot">{{ hour }}</div>
-            }
-        </div>
-        <div class="week-days scrollable-content">
-            @for (day of weekDaysView(); track day.date) {
-            <div class="day-column">
-                <div class="day-header">
-                    <div class="day-name">{{ getDayName(day.date) }}</div>
-                    <div
-                        class="day-number"
-                        [class.today]="isToday(day.date)"
-                        [class.selected]="isSelected(day.date)"
-                        (click)="selectDate(day.date)"
-                        (keyup.enter)="selectDate(day.date)"
-                        tabindex="0"
-                        role="button"
-                    >
-                        {{ day.date.getDate() }}
-                    </div>
-                </div>
-                <div class="day-events">
-                    @for (event of day.events; track event.id) {
-                    <div
-                        class="week-event"
-                        [style.background-color]="event.color"
-                        [style.top.px]="getEventTop(event)"
-                        [style.height.px]="getEventHeight(event)"
-                        (click)="selectEvent(event)"
-                        (keyup.enter)="selectEvent(event)"
-                        tabindex="0"
-                    >
-                        <div class="event-title">{{ event.title }}</div>
-                        <div class="event-time">{{ formatEventTime(event) }}</div>
-                    </div>
-                    }
-                </div>
+        <div class="week-view-content" #weekViewContent>
+            <div class="time-column">
+                @for (hour of hours; track hour) {
+                <div class="time-slot">{{ hour }}</div>
+                }
             </div>
-            }
+            <div class="week-days">
+                @for (day of weekDaysView(); track day.date) {
+                <div class="day-column">
+                    <div class="day-header">
+                        <div class="day-name">{{ getDayName(day.date) }}</div>
+                        <div
+                            class="day-number"
+                            [class.today]="isToday(day.date)"
+                            [class.selected]="isSelected(day.date)"
+                            (click)="selectDate(day.date)"
+                            (keyup.enter)="selectDate(day.date)"
+                            tabindex="0"
+                            role="button"
+                        >
+                            {{ day.date.getDate() }}
+                        </div>
+                    </div>
+                    <div class="day-events">
+                        @for (event of day.events; track event.id) {
+                        <div
+                            class="week-event"
+                            [style.background-color]="event.color"
+                            [style.top.px]="getEventTop(event)"
+                            [style.height.px]="getEventHeight(event)"
+                            (click)="selectEvent(event)"
+                            (keyup.enter)="selectEvent(event)"
+                            tabindex="0"
+                        >
+                            <div class="event-title">{{ event.title }}</div>
+                            <div class="event-time">{{ formatEventTime(event) }}</div>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
         </div>
     </div>
     }
@@ -99,39 +101,41 @@
             <h2>{{ formatDayHeader(currentDate()) }}</h2>
         </div>
         <div class="day-content">
-            <div class="time-column">
-                @for (hour of hours; track hour) {
-                <div class="time-slot">{{ hour }}</div>
-                }
-            </div>
-            <div class="day-events-column scrollable-content">
-                @for (event of dayEvents(); track event.id) {
-                <div
-                    class="day-event"
-                    [style.background-color]="event.color"
-                    [style.top.px]="getEventTop(event)"
-                    [style.height.px]="getEventHeight(event)"
-                    (click)="selectEvent(event)"
-                    (keyup.enter)="selectEvent(event)"
-                    tabindex="0"
-                >
-                    <div class="event-title">{{ event.title }}</div>
-                    <div class="event-time">{{ formatEventTime(event) }}</div>
-                    @if (event.description) {
-                    <div class="event-description">{{ event.description }}</div>
-                    } @if (event.type === 'task') {
-                    <div class="event-actions">
-                        <button
-                            class="task-toggle"
-                            (click)="$event.stopPropagation(); toggleTask(event.taskId!)"
-                            [title]="getTaskStatus(event)"
-                        >
-                            {{ getTaskIcon(event) }}
-                        </button>
+            <div class="day-view-content" #dayViewContent>
+                <div class="time-column">
+                    @for (hour of hours; track hour) {
+                    <div class="time-slot">{{ hour }}</div>
+                    }
+                </div>
+                <div class="day-events-column">
+                    @for (event of dayEvents(); track event.id) {
+                    <div
+                        class="day-event"
+                        [style.background-color]="event.color"
+                        [style.top.px]="getEventTop(event)"
+                        [style.height.px]="getEventHeight(event)"
+                        (click)="selectEvent(event)"
+                        (keyup.enter)="selectEvent(event)"
+                        tabindex="0"
+                    >
+                        <div class="event-title">{{ event.title }}</div>
+                        <div class="event-time">{{ formatEventTime(event) }}</div>
+                        @if (event.description) {
+                        <div class="event-description">{{ event.description }}</div>
+                        } @if (event.type === 'task') {
+                        <div class="event-actions">
+                            <button
+                                class="task-toggle"
+                                (click)="$event.stopPropagation(); toggleTask(event.taskId!)"
+                                [title]="getTaskStatus(event)"
+                            >
+                                {{ getTaskIcon(event) }}
+                            </button>
+                        </div>
+                        }
                     </div>
                     }
                 </div>
-                }
             </div>
         </div>
     </div>

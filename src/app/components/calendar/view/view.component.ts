@@ -1,4 +1,13 @@
-import { Component, input, output, computed } from '@angular/core';
+import {
+    Component,
+    input,
+    output,
+    computed,
+    ViewChild,
+    ElementRef,
+    AfterViewInit,
+    effect,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarView, CalendarEvent } from '../calendar.component';
 
@@ -9,7 +18,10 @@ import { CalendarView, CalendarEvent } from '../calendar.component';
     templateUrl: './view.component.html',
     styleUrl: './view.component.scss',
 })
-export class CalendarViewComponent {
+export class CalendarViewComponent implements AfterViewInit {
+    @ViewChild('weekViewContent') weekViewContent!: ElementRef<HTMLDivElement>;
+    @ViewChild('dayViewContent') dayViewContent!: ElementRef<HTMLDivElement>;
+
     currentDate = input.required<Date>();
     selectedView = input.required<CalendarView>();
     events = input.required<CalendarEvent[]>();
@@ -85,8 +97,40 @@ export class CalendarViewComponent {
         return this.getEventsForDate(this.currentDate());
     });
 
+    ngAfterViewInit(): void {
+        // Auto-scroll to current hour when view changes
+        setTimeout(() => {
+            this.scrollToCurrentHour();
+        }, 100);
+
+        // Effect to auto-scroll when view changes
+        effect(() => {
+            const view = this.selectedView();
+            if (view === 'week' || view === 'day') {
+                setTimeout(() => {
+                    this.scrollToCurrentHour();
+                }, 150); // Slightly longer delay for view transitions
+            }
+        });
+    }
+
+    private scrollToCurrentHour(): void {
+        const currentHour = new Date().getHours();
+        const scrollPosition = currentHour * 60; // 60px per hour
+
+        if (this.selectedView() === 'week' && this.weekViewContent) {
+            this.weekViewContent.nativeElement.scrollTop = scrollPosition;
+        } else if (this.selectedView() === 'day' && this.dayViewContent) {
+            this.dayViewContent.nativeElement.scrollTop = scrollPosition;
+        }
+    }
+
     selectDate(date: Date): void {
         this.dateSelect.emit(date);
+        // Auto-scroll when selecting date
+        setTimeout(() => {
+            this.scrollToCurrentHour();
+        }, 100);
     }
 
     selectEvent(event: CalendarEvent): void {

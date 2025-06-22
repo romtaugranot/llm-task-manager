@@ -33,7 +33,7 @@ export interface CalendarEvent {
     ],
     templateUrl: './calendar.component.html',
     styleUrl: './calendar.component.scss',
-    animations: [fadeInUp, fadeInLeft, fadeInRight, slideDown]
+    animations: [fadeInUp, fadeInLeft, fadeInRight, slideDown],
 })
 export class CalendarComponent {
     currentDate = signal<Date>(new Date());
@@ -139,7 +139,7 @@ export class CalendarComponent {
             startDate: new Date(today.getTime() + 9 * 60 * 60 * 1000), // 9 AM today
             endDate: new Date(today.getTime() + 10 * 60 * 60 * 1000), // 10 AM today
             allDay: false,
-            color: '#06b6d4',
+            color: '#4fc3f7', // Less vibrant cyan
             category: 'personal',
             type: 'event',
         });
@@ -151,7 +151,7 @@ export class CalendarComponent {
             startDate: new Date(tomorrow.getTime() + 18 * 60 * 60 * 1000), // 6 PM tomorrow
             endDate: new Date(tomorrow.getTime() + 19.5 * 60 * 60 * 1000), // 7:30 PM tomorrow
             allDay: false,
-            color: '#8b5cf6',
+            color: '#ba68c8', // Less vibrant purple
             category: 'wellness',
             type: 'event',
         });
@@ -242,13 +242,13 @@ export class CalendarComponent {
     // Utility methods
     private getCategoryColor(category: string): string {
         const colors = {
-            fitness: '#ef4444',
-            nutrition: '#22c55e',
-            wellness: '#8b5cf6',
-            personal: '#06b6d4',
-            work: '#f59e0b',
+            fitness: '#e57373', // Less vibrant red
+            nutrition: '#81c784', // Less vibrant green
+            wellness: '#ba68c8', // Less vibrant purple
+            personal: '#4fc3f7', // Less vibrant cyan
+            work: '#ffb74d', // Less vibrant orange
         };
-        return colors[category as keyof typeof colors] || '#6b7280';
+        return colors[category as keyof typeof colors] || '#90a4ae';
     }
 
     // Get current month/week/day based on view
