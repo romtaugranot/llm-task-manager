@@ -55,7 +55,7 @@ export class NavbarUserComponent {
         this.closeDropdown();
         this.authService.signOut().subscribe({
             next: () => {
-                console.log('Logged out successfully');
+                this.router.navigate(['/login']);
             },
             error: (error) => {
                 console.error('Logout error:', error);

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal, effect } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, LoginRequest } from '../../../core';
+import { MockAuthService as AuthService, LoginRequest } from '../../../core';
 
 @Component({
     selector: 'app-login-form',
