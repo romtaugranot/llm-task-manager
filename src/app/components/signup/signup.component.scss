@@ -2,17 +2,24 @@
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 48px;
+    padding: 32px; // Reduced padding
     width: 100%;
     max-width: 480px;
+    min-height: 600px; // Reasonable fixed height
+    height: 600px; // Fixed height
     box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; // No scrolling
 }
 
 @media (max-width: 640px) {
     .signup-card {
-        padding: 32px 24px;
+        padding: 24px 20px; // Reduced mobile padding
         margin: 0 16px;
+        min-height: 600px; // Smaller for mobile
+        height: 600px;
     }
 }
