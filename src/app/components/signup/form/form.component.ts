@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, effect } from '@angular/core';
+import { Component, inject, signal, effect, computed } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -35,6 +35,32 @@ export class SignUpFormComponent {
     readonly emailChecking = signal(false);
     readonly emailExists = signal(false);
     readonly validationErrors = signal<Record<string, string>>({});
+
+    // Signal to track password value changes
+    private readonly passwordValue = signal('');
+
+    // Password strength computed property
+    readonly passwordStrength = computed(() => {
+        const password = this.passwordValue();
+        return this.calculatePasswordStrength(password);
+    });
+
+    // Password strength label computed property
+    readonly passwordStrengthLabel = computed(() => {
+        const strength = this.passwordStrength();
+        switch (strength) {
+            case 0:
+                return '';
+            case 1:
+                return 'Weak';
+            case 2:
+                return 'Fair';
+            case 3:
+                return 'Strong';
+            default:
+                return '';
+        }
+    });
 
     constructor() {
         // Clear any existing auth errors when component initializes
@@ -86,7 +112,9 @@ export class SignUpFormComponent {
 
     private setupEmailValidation(): void {
         const emailControl = this.signUpForm.get('email')!;
+        const passwordControl = this.signUpForm.get('password')!;
 
+        // Setup email validation
         emailControl.valueChanges
             .pipe(
                 debounceTime(500),
@@ -100,7 +128,7 @@ export class SignUpFormComponent {
                     this.emailChecking.set(true);
                     return this.authService.checkEmailExists(email);
                 }),
-                takeUntilDestroyed() // Now this works because we're in constructor context
+                takeUntilDestroyed()
             )
             .subscribe({
                 next: (result) => {
@@ -117,6 +145,38 @@ export class SignUpFormComponent {
                     this.emailExists.set(false);
                 },
             });
+
+        // Setup password strength tracking
+        passwordControl.valueChanges.pipe(takeUntilDestroyed()).subscribe((password) => {
+            this.passwordValue.set(password || '');
+        });
+    }
+
+    // Enhanced password strength calculation
+    private calculatePasswordStrength(password: string): number {
+        if (!password || password.length < 8) return 0;
+
+        let score = 0;
+
+        // Check for different character types
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+        // Length bonus
+        if (password.length >= 8) score += 1;
+
+        // Character variety scoring
+        const varietyCount = [hasUpperCase, hasLowerCase, hasNumbers, hasSpecialChar].filter(
+            Boolean
+        ).length;
+
+        if (varietyCount >= 2) score += 1;
+        if (varietyCount >= 3) score += 1;
+
+        // Cap at 3 for our 3-bar system
+        return Math.min(score, 3);
     }
 
     // Custom validators
@@ -136,6 +196,10 @@ export class SignUpFormComponent {
         const value = control.value;
         if (!value) return null;
 
+        if (value.length < 8) {
+            return { minLength: true };
+        }
+
         const hasUpperCase = /[A-Z]/.test(value);
         const hasLowerCase = /[a-z]/.test(value);
         const hasNumbers = /\d/.test(value);
@@ -145,7 +209,7 @@ export class SignUpFormComponent {
             Boolean
         ).length;
 
-        if (validConditions < 3) {
+        if (validConditions < 2) {
             return { weakPassword: true };
         }
 
@@ -193,7 +257,7 @@ export class SignUpFormComponent {
                 if (field.errors['required']) return 'Password is required';
                 if (field.errors['minlength']) return 'Password must be at least 8 characters';
                 if (field.errors['weakPassword'])
-                    return 'Password must contain at least 3 of: uppercase, lowercase, numbers, special characters';
+                    return 'Password must contain at least 2 of: uppercase, lowercase, numbers, special characters';
                 break;
         }
 

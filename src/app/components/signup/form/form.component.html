@@ -213,22 +213,33 @@
             </div>
             }
 
-            <!-- Password strength indicator -->
+            <!-- Enhanced Password strength indicator -->
             @if (signUpForm.get('password')?.value && signUpForm.get('password')?.touched) {
             <div class="password-strength">
-                <div class="strength-label">Password strength:</div>
+                <div class="strength-label">
+                    Password strength:
+                    <span class="strength-text" [class]="'strength-' + passwordStrength()">
+                        {{ passwordStrengthLabel() }}
+                    </span>
+                </div>
                 <div class="strength-bars">
                     <div
                         class="strength-bar"
-                        [class.active]="signUpForm.get('password')?.value?.length >= 8"
+                        [class.active]="passwordStrength() >= 1"
+                        [class.weak]="passwordStrength() === 1"
+                        [class.fair]="passwordStrength() === 2"
+                        [class.strong]="passwordStrength() === 3"
                     ></div>
                     <div
                         class="strength-bar"
-                        [class.active]="signUpForm.get('password')?.valid"
+                        [class.active]="passwordStrength() >= 2"
+                        [class.fair]="passwordStrength() === 2"
+                        [class.strong]="passwordStrength() === 3"
                     ></div>
                     <div
                         class="strength-bar"
-                        [class.active]="signUpForm.get('password')?.valid"
+                        [class.active]="passwordStrength() >= 3"
+                        [class.strong]="passwordStrength() === 3"
                     ></div>
                 </div>
             </div>
