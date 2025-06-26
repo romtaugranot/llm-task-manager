@@ -12,7 +12,7 @@
 
     <div class="form-group password-group">
         <input
-            [type]="showPassword ? 'text' : 'password'"
+            [type]="showPassword() ? 'text' : 'password'"
             id="password"
             formControlName="password"
             class="form-input"
@@ -23,7 +23,7 @@
             type="button"
             class="password-toggle"
             (click)="togglePassword()"
-            [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
         >
             <svg
                 width="20"
@@ -35,7 +35,7 @@
             >
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
-                @if(showPassword) {
+                @if(showPassword()) {
                 <path d="m1 1 22 22"></path>
                 }
             </svg>
@@ -50,8 +50,8 @@
         type="submit"
         class="submit-btn"
         [disabled]="loginForm.invalid"
-        [class.loading]="isLoading"
+        [class.loading]="isLoading()"
     >
-        {{ isLoading ? 'Signing in...' : 'Sign in' }}
+        {{ isLoading() ? 'Signing in...' : 'Sign in' }}
     </button>
 </form>
