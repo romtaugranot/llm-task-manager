@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Router, type CanActivateFn } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { MockAuthService as AuthService } from '../../auth';
 
 /**
  * Guard to protect routes that require authentication
