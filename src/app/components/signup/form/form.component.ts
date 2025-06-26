@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { AuthService, SignUpRequest } from '../../../core';
+import { MockAuthService as AuthService, SignUpRequest } from '../../../core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
