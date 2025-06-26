@@ -4,8 +4,14 @@
             <span class="brand-text">TaskManager</span>
         </div>
 
+        <!-- Show navigation links only if authenticated -->
+        @if (isAuthenticated()) {
         <app-navbar-links />
+        }
 
-        <app-navbar-user [userName]="userName" [userEmail]="userEmail" />
+        <!-- Show user menu only if authenticated -->
+        @if (isAuthenticated() && user()) {
+        <app-navbar-user />
+        }
     </div>
 </nav>

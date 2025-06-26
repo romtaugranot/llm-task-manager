@@ -1,7 +1,7 @@
 <div class="user-menu" (clickOutside)="closeDropdown()">
     <button class="user-button" (click)="toggleDropdown()" [class.active]="isDropdownOpen">
         <div class="user-avatar">
-            <span>{{ userInitials }}</span>
+            <span>{{ userInitials() }}</span>
         </div>
         <div class="user-info">
             <span class="user-name">{{ userName() }}</span>

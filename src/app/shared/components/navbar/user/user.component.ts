@@ -1,30 +1,42 @@
-import { Component, HostListener, inject, input } from '@angular/core';
+import { Component, HostListener, inject, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { slideDown, scaleInOut } from '../../../animations';
+import { MockAuthService as AuthService } from '../../../../core';
 
 @Component({
     selector: 'app-navbar-user',
     imports: [],
     templateUrl: './user.component.html',
     styleUrl: './user.component.scss',
-    animations: [slideDown, scaleInOut]
+    animations: [slideDown, scaleInOut],
 })
 export class NavbarUserComponent {
-    router = inject(Router);
+    private readonly router = inject(Router);
+    private readonly authService = inject(AuthService);
 
     isDropdownOpen = false;
 
-    // Mock user data - in real app this would come from a service
-    userName = input.required<string>();
-    userEmail = input.required<string>();
+    // Get user data from auth service
+    readonly user = this.authService.user;
+    readonly isAuthenticated = this.authService.isAuthenticated;
 
-    get userInitials(): string {
-        return this.userName()
-            .split(' ')
-            .map((name) => name.charAt(0))
-            .join('')
-            .toUpperCase();
-    }
+    // Computed properties for user display
+    readonly userName = computed(() => {
+        const user = this.user();
+        return user ? `${user.firstName} ${user.lastName}` : '';
+    });
+
+    readonly userEmail = computed(() => {
+        const user = this.user();
+        return user?.email || '';
+    });
+
+    readonly userInitials = computed(() => {
+        const user = this.user();
+        if (!user) return '';
+
+        return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
+    });
 
     toggleDropdown(): void {
         this.isDropdownOpen = !this.isDropdownOpen;
@@ -41,8 +53,15 @@ export class NavbarUserComponent {
 
     logout(): void {
         this.closeDropdown();
-        // In real app, clear authentication tokens/session
-        this.router.navigate(['/login']);
+        this.authService.signOut().subscribe({
+            next: () => {
+                console.log('Logged out successfully');
+            },
+            error: (error) => {
+                console.error('Logout error:', error);
+                // Even if logout fails on server, we've cleared local state
+            },
+        });
     }
 
     @HostListener('document:click', ['$event'])
