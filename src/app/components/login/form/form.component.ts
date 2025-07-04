@@ -43,6 +43,13 @@ export class LoginFormComponent implements OnInit {
                     ...errors,
                     [error.field!]: error.message,
                 }));
+                
+                // Mark the field as touched to show the error immediately
+                const field = this.loginForm?.get(error.field!);
+                if (field) {
+                    field.markAsTouched();
+                    field.updateValueAndValidity();
+                }
             }
         });
     }

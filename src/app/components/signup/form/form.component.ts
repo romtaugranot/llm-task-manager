@@ -74,6 +74,13 @@ export class SignUpFormComponent {
                     ...errors,
                     [error.field!]: error.message,
                 }));
+                
+                // Mark the field as touched to show the error immediately
+                const field = this.signUpForm?.get(error.field!);
+                if (field) {
+                    field.markAsTouched();
+                    field.updateValueAndValidity();
+                }
             }
         });
 
@@ -137,6 +144,7 @@ export class SignUpFormComponent {
                         this.emailExists.set(result.exists);
                         if (result.exists) {
                             emailControl.setErrors({ emailExists: true });
+                            emailControl.markAsTouched();
                         }
                     }
                 },

@@ -1,0 +1,373 @@
+.not-found-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.not-found-content {
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Illustration Container */
+.illustration-container {
+    position: relative;
+    margin-bottom: 40px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.element {
+    position: absolute;
+    font-size: 24px;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.element-2 {
+    top: 30%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    bottom: 35%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Main 404 Illustration */
+.main-illustration {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.number-404 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 120px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.digit {
+    position: relative;
+}
+
+.digit-0 {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.orbit {
+    width: 100px;
+    height: 100px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 4s linear infinite;
+}
+
+.planet {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Astronaut */
+.astronaut {
+    position: relative;
+    animation: astronautFloat 4s ease-in-out infinite;
+}
+
+.astronaut-body {
+    font-size: 60px;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+.astronaut-shadow {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    animation: shadowPulse 4s ease-in-out infinite;
+}
+
+@keyframes astronautFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes shadowPulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0.2;
+    }
+}
+
+/* Text Content */
+.text-content {
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 0;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-width: 160px;
+    justify-content: center;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.action-btn.secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Help Section */
+.help-section {
+    margin-top: 20px;
+}
+
+.help-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.help-link {
+    color: #a78bfa;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.help-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .not-found-container {
+        padding: 16px;
+    }
+
+    .illustration-container {
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    .number-404 {
+        font-size: 80px;
+        gap: 15px;
+    }
+
+    .digit-0 {
+        width: 80px;
+        height: 80px;
+    }
+
+    .orbit {
+        width: 70px;
+        height: 70px;
+    }
+
+    .astronaut-body {
+        font-size: 40px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .element {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .number-404 {
+        font-size: 60px;
+        gap: 10px;
+    }
+
+    .digit-0 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .orbit {
+        width: 50px;
+        height: 50px;
+    }
+
+    .planet {
+        width: 15px;
+        height: 15px;
+        top: -7px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .element,
+    .orbit,
+    .astronaut,
+    .astronaut-shadow {
+        animation: none;
+    }
+    
+    .action-btn:hover {
+        transform: none;
+    }
+}

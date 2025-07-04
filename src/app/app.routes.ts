@@ -40,9 +40,13 @@ export const routes: Routes = [
             import('./components/signup/signup.component').then((m) => m.SignUpComponent),
         canActivate: [redirectAuthenticatedGuard], // Redirect if already logged in
     },
-
+    {
+        path: '404',
+        loadComponent: () =>
+            import('./components/not-found/not-found.component').then((m) => m.NotFoundComponent),
+    },
     {
         path: '**',
-        redirectTo: 'dashboard', // Redirect unknown routes to dashboard
+        redirectTo: '404', // Redirect unknown routes to 404 page
     },
 ];
