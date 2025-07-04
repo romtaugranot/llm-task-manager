@@ -1,10 +1,23 @@
 <app-navbar [@fadeInUp] />
 
 <div class="questionnaire-card" [@scaleIn]>
-    <app-progress-bar 
-        [questions]="questions" 
-        [currentQuestionIndex]="currentQuestionIndex()" 
-        [@fadeInLeft] />
+    <!-- Header with skip option -->
+    <div class="questionnaire-header" [@fadeInUp]>
+        <h1 class="questionnaire-title">Let's personalize your experience</h1>
+        <p class="questionnaire-subtitle">
+            Help us understand your preferences to create a better task management experience.
+            <br />
+            <span class="skip-hint"
+                >You can skip this anytime and go directly to your dashboard or calendar.</span
+            >
+        </p>
+    </div>
+
+    <app-progress-bar
+        [questions]="questions"
+        [currentQuestionIndex]="currentQuestionIndex()"
+        [@fadeInLeft]
+    />
 
     <app-question-container
         [answers]="answers"

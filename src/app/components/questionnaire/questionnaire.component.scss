@@ -2,10 +2,11 @@
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 48px;
+    padding: 32px 40px;
     width: 100%;
     min-width: 700px;
     max-width: 800px;
+    max-height: 85vh;
     box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-family: inherit;
@@ -13,42 +14,61 @@
     flex-direction: column;
     box-sizing: border-box;
     position: relative;
-    margin-top: 50px;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.questionnaire-header {
+    text-align: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.questionnaire-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+}
+
+.questionnaire-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.skip-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
 }
 
 @media (max-width: 768px) {
     .questionnaire-card {
-        padding: 32px 24px;
+        padding: 24px 20px;
         min-width: 0;
         max-width: 100%;
+        margin-top: 10px;
+        max-height: 90vh;
     }
 
-    .question-title {
-        font-size: 24px;
-    }
-
-    .option-card {
-        padding: 16px 20px;
-        gap: 16px;
-    }
-
-    .option-icon {
+    .questionnaire-title {
         font-size: 20px;
-        min-width: 28px;
     }
 
-    .navigation-container {
-        gap: 12px;
+    .questionnaire-subtitle {
+        font-size: 13px;
     }
 
-    .nav-btn {
-        flex: 1;
-        padding: 14px;
-        min-width: 0;
+    .skip-hint {
+        font-size: 11px;
     }
 
-    .progress-text {
-        text-align: center;
-        min-width: auto;
+    .questionnaire-header {
+        margin-bottom: 16px;
     }
 }
