@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { MockAuthService as AuthService } from '../../core';
 import {
     fadeInUp,
     scaleIn,
@@ -20,8 +21,24 @@ import {
 })
 export class NotFoundComponent {
     private readonly router = inject(Router);
+    private readonly authService = inject(AuthService);
+
+    // Get authentication state
+    readonly isAuthenticated = this.authService.isAuthenticated;
 
     goHome(): void {
         this.router.navigate(['/dashboard']);
+    }
+
+    goToCalendar(): void {
+        this.router.navigate(['/calendar']);
+    }
+
+    goToLogin(): void {
+        this.router.navigate(['/login']);
+    }
+
+    goToSignup(): void {
+        this.router.navigate(['/signup']);
     }
 }
