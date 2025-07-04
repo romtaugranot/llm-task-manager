@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Router, Location } from '@angular/router';
-import { 
-    fadeInUp, 
-    scaleIn, 
-    bounceIn, 
-    slideInLeft, 
-    slideInRight, 
-    staggerIn, 
-    scaleInOut 
+import { Router } from '@angular/router';
+import {
+    fadeInUp,
+    scaleIn,
+    bounceIn,
+    slideInLeft,
+    slideInRight,
+    staggerIn,
+    scaleInOut,
 } from '../../shared/animations';
 
 @Component({
@@ -16,25 +16,12 @@ import {
     imports: [],
     templateUrl: './not-found.component.html',
     styleUrl: './not-found.component.scss',
-    animations: [
-        fadeInUp,
-        scaleIn,
-        bounceIn,
-        slideInLeft,
-        slideInRight,
-        staggerIn,
-        scaleInOut
-    ]
+    animations: [fadeInUp, scaleIn, bounceIn, slideInLeft, slideInRight, staggerIn, scaleInOut],
 })
 export class NotFoundComponent {
     private readonly router = inject(Router);
-    private readonly location = inject(Location);
 
     goHome(): void {
         this.router.navigate(['/dashboard']);
-    }
-
-    goBack(): void {
-        this.location.back();
     }
 }
