@@ -1,9 +1,9 @@
-// Enhanced stats component with better visual hierarchy and modern design
+// Responsive stats component that adapts to available space
 .stats-section {
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 16px;
+    padding: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
@@ -20,6 +20,7 @@
     flex: 1;
     position: relative;
     z-index: 1;
+    min-height: 0;
 }
 
 .stats-content {
@@ -27,31 +28,32 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 0;
 }
 
 .section-title {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     color: white;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.4px;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.3px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .section-title::before {
     content: '📊';
-    font-size: 20px;
+    font-size: 16px;
     filter: grayscale(0.3);
 }
 
-// Enhanced stats grid with better spacing and visual appeal
+// Desktop stats grid - 2x2
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 0 0 5px 0;
+    gap: 12px;
+    margin: 0 0 12px 0;
 }
 
 .stat-card {
@@ -60,8 +62,8 @@
         rgba(255, 255, 255, 0.1) 0%,
         rgba(255, 255, 255, 0.05) 100%
     );
-    border-radius: 16px;
-    padding: 20px 16px;
+    border-radius: 12px;
+    padding: 12px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
     position: relative;
@@ -69,7 +71,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-height: 100px;
+    min-height: 70px;
     overflow: hidden;
 }
 
@@ -79,14 +81,14 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: var(--accent-color);
-    border-radius: 16px 16px 0 0;
+    border-radius: 12px 12px 0 0;
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     border-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -94,36 +96,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     z-index: 1;
 }
 
 .stat-number {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 800;
     color: white;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     line-height: 1;
 }
 
 .stat-label {
-    font-size: 12px;
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.5px;
     font-weight: 600;
 }
 
 .stat-icon {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 16px;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
     opacity: 0.6;
     z-index: 0;
 }
 
-// Enhanced color coding with CSS custom properties
+// Color coding
 .stat-card.completed {
     --accent-color: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
@@ -156,34 +158,32 @@
     background: var(--accent-color);
 }
 
-// Enhanced action buttons with better hierarchy
+// Compact action buttons
 .action-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0 0 0 0;
+    gap: 6px;
+    margin: 0;
     flex-shrink: 0;
     position: relative;
     z-index: 10;
-    padding-top: 6px;
 }
 
 .action-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 14px 16px;
+    gap: 6px;
+    flex: 1;
+    padding: 8px 10px;
     background: linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.1) 0%,
         rgba(255, 255, 255, 0.05) 100%
     );
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 8px;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -215,65 +215,146 @@
         rgba(255, 255, 255, 0.1) 100%
     );
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: rgba(139, 92, 246, 0.3);
 }
 
 .action-icon {
-    font-size: 16px;
+    font-size: 12px;
     filter: grayscale(0.2);
 }
 
-// Responsive improvements
+// Tablet responsive - horizontal stats
 @media (max-width: 1024px) {
     .stats-grid {
-        gap: 12px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin: 0 0 8px 0;
     }
 
     .stat-card {
-        padding: 16px 12px;
-        min-height: 85px;
+        min-height: 60px;
+        padding: 8px;
     }
 
     .stat-number {
-        font-size: 24px;
+        font-size: 18px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    .action-buttons {
+        gap: 4px;
+    }
+
+    .action-btn {
+        padding: 6px 8px;
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .action-icon {
+        font-size: 10px;
     }
 }
 
+// Mobile responsive - ultra compact
 @media (max-width: 768px) {
+    .stats-section {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
     .section-title {
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 16px;
+        margin-bottom: 6px;
+        gap: 6px;
+    }
+
+    .section-title::before {
+        font-size: 14px;
     }
 
     .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 6px;
+        margin: 0 0 6px 0;
     }
 
     .stat-card {
-        flex-direction: row;
-        text-align: left;
-        padding: 16px;
-        min-height: 70px;
-    }
-
-    .stat-content {
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        flex: 1;
+        min-height: 50px;
+        padding: 6px;
+        border-radius: 8px;
     }
 
     .stat-number {
-        font-size: 20px;
-        margin-bottom: 0;
+        font-size: 16px;
+    }
+
+    .stat-label {
+        font-size: 8px;
     }
 
     .stat-icon {
-        position: static;
-        margin-left: auto;
-        font-size: 18px;
+        font-size: 10px;
+        top: 4px;
+        right: 4px;
+    }
+
+    .action-buttons {
+        gap: 3px;
+    }
+
+    .action-btn {
+        padding: 4px 6px;
+        font-size: 9px;
+        gap: 3px;
+        border-radius: 6px;
+    }
+
+    .action-icon {
+        font-size: 9px;
+    }
+}
+
+// Small mobile - minimal stats
+@media (max-width: 480px) {
+    .stats-section {
+        padding: 8px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .stats-grid {
+        gap: 4px;
+        margin: 0 0 4px 0;
+    }
+
+    .stat-card {
+        min-height: 40px;
+        padding: 4px;
+    }
+
+    .stat-number {
+        font-size: 14px;
+    }
+
+    .stat-label {
+        font-size: 7px;
+    }
+
+    .action-btn {
+        padding: 3px 4px;
+        font-size: 8px;
+        gap: 2px;
+    }
+
+    .action-icon {
+        font-size: 8px;
     }
 }

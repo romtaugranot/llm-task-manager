@@ -1,7 +1,7 @@
 .tasks-section {
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
@@ -12,17 +12,15 @@
     overflow: hidden;
 }
 
-/* Responsive improvements */
-@media (max-width: 480px) {
+// Responsive improvements
+@media (max-width: 1024px) {
     .tasks-section {
-        border-radius: 16px;
+        border-radius: 12px;
     }
 }
 
-@media (max-width: 1024px) {
-    /* Styles handled in individual components */
-}
-
-@media (max-width: 768px) {
-    /* Styles handled in individual components */
+@media (max-width: 480px) {
+    .tasks-section {
+        border-radius: 12px;
+    }
 }

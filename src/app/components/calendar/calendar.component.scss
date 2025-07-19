@@ -2,8 +2,8 @@
     display: flex;
     max-width: 1800px;
     margin: 0 auto;
-    padding: 80px 24px 16px;
-    gap: 24px;
+    padding: 70px 20px 12px;
+    gap: 16px;
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
@@ -17,7 +17,7 @@
     min-width: 0;
     background: rgba(30, 30, 40, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
     width: 100%;
@@ -36,7 +36,7 @@
 
 .calendar-footer {
     flex-shrink: 0;
-    padding: 16px 24px 24px;
+    padding: 12px 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
     width: 100%;
@@ -58,8 +58,8 @@
     ::ng-deep .add-task-input {
         background: rgba(255, 255, 255, 0.08);
         border: 1.5px solid rgba(255, 255, 255, 0.15);
-        padding: 12px 16px;
-        font-size: 14px;
+        padding: 10px 14px;
+        font-size: 13px;
     }
 
     ::ng-deep .add-task-input:focus {
@@ -67,61 +67,65 @@
     }
 
     ::ng-deep .add-task-submit {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
     }
 }
 
 /* Tablet responsive */
 @media (max-width: 1200px) {
     .calendar-container {
-        padding: 70px 16px 12px;
-        gap: 16px;
+        padding: 60px 16px 8px;
+        gap: 12px;
+    }
+
+    .calendar-main {
+        border-radius: 12px;
     }
 }
 
 /* Mobile responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .calendar-container {
-        padding: 70px 8px 8px;
+        padding: 55px 12px 6px;
         gap: 8px;
     }
 
     .calendar-footer {
-        padding: 8px 12px 12px;
+        padding: 8px 12px;
 
         ::ng-deep .add-task-input {
             padding: 8px 12px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         ::ng-deep .add-task-submit {
             width: 32px;
             height: 32px;
-            font-size: 16px;
+            font-size: 14px;
         }
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .calendar-container {
-        padding: 70px 12px 8px;
-        gap: 12px;
+        padding: 50px 8px 4px;
+        gap: 6px;
     }
 
     .calendar-footer {
-        padding: 12px 16px 16px;
+        padding: 6px 8px;
 
         ::ng-deep .add-task-input {
-            padding: 10px 14px;
-            font-size: 14px;
+            padding: 6px 10px;
+            font-size: 12px;
         }
 
         ::ng-deep .add-task-submit {
-            width: 36px;
-            height: 36px;
-            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            font-size: 14px;
         }
     }
 }

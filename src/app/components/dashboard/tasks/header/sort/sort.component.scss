@@ -1,25 +1,25 @@
 .sort-controls {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .sort-select {
-    padding: 10px 36px 10px 14px;
+    padding: 8px 28px 8px 12px;
     background: rgba(255, 255, 255, 0.08);
     border: 1.5px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     appearance: none;
-    min-width: 160px;
+    min-width: 140px;
     transition: all 0.3s ease;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="rgba(255,255,255,0.7)" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg fill="rgba(255,255,255,0.7)" height="14" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 16px;
+    background-position: right 10px center;
+    background-size: 14px;
 }
 
 .sort-select:focus {
@@ -32,12 +32,12 @@
 .sort-select option {
     background: rgba(30, 30, 40, 0.98);
     color: white;
-    padding: 10px;
+    padding: 8px;
     border: none;
 }
 
-/* Mobile responsive */
-@media (max-width: 480px) {
+/* Tablet responsive */
+@media (max-width: 1024px) {
     .sort-controls {
         order: 2;
         width: 100%;
@@ -46,16 +46,28 @@
     .sort-select {
         width: 100%;
         min-width: auto;
-        padding: 8px 32px 8px 12px;
-        font-size: 12px;
-        background-position: right 10px center;
-        background-size: 14px;
+        padding: 6px 24px 6px 10px;
+        font-size: 11px;
+        background-position: right 8px center;
+        background-size: 12px;
     }
 }
 
+/* Mobile responsive */
 @media (max-width: 768px) {
     .sort-select {
-        min-width: 140px;
-        font-size: 12px;
+        padding: 5px 22px 5px 8px;
+        font-size: 10px;
+        background-position: right 6px center;
+        background-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sort-select {
+        padding: 4px 20px 4px 6px;
+        font-size: 9px;
+        background-position: right 4px center;
+        background-size: 8px;
     }
 }

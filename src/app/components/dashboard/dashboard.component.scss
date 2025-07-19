@@ -3,38 +3,38 @@
     flex-direction: column;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 80px 24px 16px;
-    gap: 16px;
+    padding: 70px 20px 12px;
+    gap: 12px;
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
 }
 
-/* Top row - Overview and Tasks side by side */
+/* Desktop layout - side by side */
 .top-row {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex: 1;
     min-height: 0;
     width: 100%;
 }
 
-/* Bottom row - Add Task (full width) */
 .bottom-row {
     display: flex;
     width: 100%;
     flex-shrink: 0;
 }
 
-/* Ensure child components take proper space */
+/* Stats sidebar on desktop */
 app-dashboard-stats {
-    flex: 0 0 300px; /* Fixed width for stats */
-    min-width: 280px;
+    flex: 0 0 280px;
+    min-width: 260px;
 }
 
+/* Tasks take remaining space */
 app-dashboard-tasks {
-    flex: 1; /* Take remaining space */
+    flex: 1;
     min-width: 0;
 }
 
@@ -42,41 +42,61 @@ app-add-task {
     width: 100%;
 }
 
-/* Tablet responsive */
+/* Tablet layout - stack vertically but optimize space */
 @media (max-width: 1024px) {
     .dashboard-container {
-        padding: 70px 16px 12px;
-        gap: 12px;
+        padding: 60px 16px 8px;
+        gap: 8px;
     }
 
     .top-row {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
     }
 
     app-dashboard-stats {
         flex: none;
         width: 100%;
         min-width: auto;
+        /* Reduce stats height on tablet */
+        max-height: 200px;
+    }
+
+    app-dashboard-tasks {
+        flex: 1;
+        min-height: 0;
     }
 }
 
-/* Mobile responsive */
-@media (max-width: 480px) {
+/* Mobile layout - compact everything */
+@media (max-width: 768px) {
     .dashboard-container {
-        padding: 70px 8px 8px;
-        gap: 8px;
-        height: 100vh;
+        padding: 55px 12px 6px;
+        gap: 6px;
     }
 
     .top-row {
-        gap: 8px;
+        gap: 6px;
+    }
+
+    app-dashboard-stats {
+        /* Very compact stats on mobile */
+        max-height: 160px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .dashboard-container {
-        padding: 70px 12px 8px;
-        gap: 8px;
+        padding: 50px 8px 4px;
+        gap: 4px;
+    }
+
+    .top-row {
+        gap: 4px;
+    }
+
+    app-dashboard-stats {
+        /* Ultra compact stats on small mobile */
+        max-height: 140px;
     }
 }

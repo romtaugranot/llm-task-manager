@@ -1,57 +1,63 @@
 .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .nav-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 6px;
+    padding: 8px 12px;
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
     white-space: nowrap;
-
-    &:hover {
-        color: white;
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    svg {
-        opacity: 0.8;
-        transition: opacity 0.2s ease;
-        flex-shrink: 0;
-    }
-
-    &:hover svg {
-        opacity: 1;
-    }
 }
 
-@media (max-width: 480px) {
+.nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link svg {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.nav-link:hover svg {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
     .navbar-nav {
         gap: 4px;
     }
 
     .nav-link {
-        padding: 8px 12px;
-        font-size: 13px;
-        gap: 6px;
+        padding: 6px 8px;
+        font-size: 12px;
+        gap: 4px;
+    }
+
+    .nav-link svg {
+        width: 14px;
+        height: 14px;
     }
 }
 
 @media (max-width: 640px) {
     .nav-link {
-        padding: 8px 10px;
-        font-size: 12px;
+        padding: 6px;
         
         /* Hide text on very small screens, show only icons */
         span {
@@ -60,8 +66,17 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .navbar-nav {
+        gap: 2px;
+    }
+
     .nav-link {
-        padding: 8px 12px;
+        padding: 4px;
+    }
+
+    .nav-link svg {
+        width: 16px;
+        height: 16px;
     }
 }
