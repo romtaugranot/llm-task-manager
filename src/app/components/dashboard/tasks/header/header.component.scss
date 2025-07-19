@@ -17,6 +17,7 @@
 
 .tasks-header-left {
     flex: 1;
+    min-width: 0;
 }
 
 .section-title {
@@ -28,6 +29,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .section-title::before {
@@ -42,6 +44,7 @@
     font-size: 14px;
     font-weight: 700;
     color: white;
+    flex-shrink: 0;
 }
 
 .task-count {
@@ -56,4 +59,52 @@
     align-items: center;
     flex-wrap: wrap;
     padding-bottom: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .tasks-header {
+        padding: 16px 16px 0;
+        gap: 12px;
+    }
+
+    .tasks-header-main {
+        gap: 12px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        gap: 8px;
+    }
+
+    .section-title::before {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+
+    .task-count {
+        font-size: 16px;
+    }
+
+    .tasks-controls {
+        gap: 8px;
+        padding-bottom: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tasks-header {
+        padding: 20px 20px 0;
+        gap: 16px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .tasks-controls {
+        gap: 12px;
+        padding-bottom: 16px;
+    }
 }

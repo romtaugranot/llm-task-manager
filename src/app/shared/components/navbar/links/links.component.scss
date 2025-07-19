@@ -18,6 +18,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
+    white-space: nowrap;
 
     &:hover {
         color: white;
@@ -27,6 +28,7 @@
     svg {
         opacity: 0.8;
         transition: opacity 0.2s ease;
+        flex-shrink: 0;
     }
 
     &:hover svg {
@@ -34,8 +36,32 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .navbar-nav {
-        display: none; // Hide nav links on mobile, could implement mobile menu
+        gap: 4px;
+    }
+
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 13px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 12px;
+        
+        /* Hide text on very small screens, show only icons */
+        span {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        padding: 8px 12px;
     }
 }

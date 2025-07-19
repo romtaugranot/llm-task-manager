@@ -1,7 +1,7 @@
 .search-container {
     position: relative;
     flex: 1;
-    min-width: 250px;
+    min-width: 200px;
     max-width: 350px;
 }
 
@@ -42,4 +42,32 @@
 
 .search-input:focus + .search-icon {
     color: #8b5cf6;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .search-container {
+        min-width: 150px;
+        max-width: 200px;
+        order: 3;
+        width: 100%;
+    }
+
+    .search-input {
+        padding: 10px 14px 10px 38px;
+        font-size: 14px;
+    }
+
+    .search-icon {
+        left: 12px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        min-width: 180px;
+        max-width: 250px;
+    }
 }

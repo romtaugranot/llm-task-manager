@@ -1,4 +1,3 @@
-// src/app/components/dashboard/dashboard.component.scss
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -9,6 +8,7 @@
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
+    width: 100%;
 }
 
 /* Top row - Overview and Tasks side by side */
@@ -17,6 +17,7 @@
     gap: 16px;
     flex: 1;
     min-height: 0;
+    width: 100%;
 }
 
 /* Bottom row - Add Task (full width) */
@@ -29,6 +30,7 @@
 /* Ensure child components take proper space */
 app-dashboard-stats {
     flex: 0 0 300px; /* Fixed width for stats */
+    min-width: 280px;
 }
 
 app-dashboard-tasks {
@@ -40,7 +42,7 @@ app-add-task {
     width: 100%;
 }
 
-/* Responsive */
+/* Tablet responsive */
 @media (max-width: 1024px) {
     .dashboard-container {
         padding: 70px 16px 12px;
@@ -55,6 +57,20 @@ app-add-task {
     app-dashboard-stats {
         flex: none;
         width: 100%;
+        min-width: auto;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: 70px 8px 8px;
+        gap: 8px;
+        height: 100vh;
+    }
+
+    .top-row {
+        gap: 8px;
     }
 }
 

@@ -73,18 +73,34 @@
     }
 }
 
-// Responsive design
+/* Tablet responsive */
 @media (max-width: 1200px) {
     .calendar-container {
-        flex-direction: column;
         padding: 70px 16px 12px;
         gap: 16px;
     }
+}
 
-    .calendar-main {
-        order: 2;
-        height: auto;
-        flex: 1;
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 70px 8px 8px;
+        gap: 8px;
+    }
+
+    .calendar-footer {
+        padding: 8px 12px 12px;
+
+        ::ng-deep .add-task-input {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        ::ng-deep .add-task-submit {
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+        }
     }
 }
 

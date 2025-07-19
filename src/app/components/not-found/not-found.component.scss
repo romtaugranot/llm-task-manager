@@ -11,7 +11,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: hidden;
+    overflow-y: auto;
     z-index: 1000;
 }
 
@@ -20,6 +20,9 @@
     text-align: center;
     position: relative;
     z-index: 2;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 
 /* Illustration Container */
@@ -321,6 +324,82 @@
 }
 
 /* Responsive Design */
+@media (max-width: 480px) {
+    .not-found-container {
+        padding: 12px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .not-found-content {
+        padding: 0 8px;
+    }
+
+    .illustration-container {
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .number-404 {
+        font-size: 60px;
+        gap: 8px;
+    }
+
+    .digit-0 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .orbit {
+        width: 50px;
+        height: 50px;
+        border-width: 2px;
+    }
+
+    .planet {
+        width: 12px;
+        height: 12px;
+        top: -6px;
+    }
+
+    .astronaut-body {
+        font-size: 30px;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .action-btn {
+        width: 100%;
+        max-width: 280px;
+        min-width: 200px;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+
+    .element {
+        font-size: 16px;
+    }
+
+    .help-text {
+        font-size: 12px;
+    }
+}
+
 @media (max-width: 768px) {
     .not-found-container {
         padding: 16px;
@@ -372,43 +451,6 @@
 
     .element {
         font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .number-404 {
-        font-size: 60px;
-        gap: 10px;
-    }
-
-    .digit-0 {
-        width: 60px;
-        height: 60px;
-    }
-
-    .orbit {
-        width: 50px;
-        height: 50px;
-    }
-
-    .planet {
-        width: 15px;
-        height: 15px;
-        top: -7px;
-    }
-
-    .title {
-        font-size: 24px;
-    }
-
-    .description {
-        font-size: 14px;
-    }
-
-    .action-btn {
-        padding: 12px 20px;
-        font-size: 15px;
-        min-width: 180px;
     }
 }
 

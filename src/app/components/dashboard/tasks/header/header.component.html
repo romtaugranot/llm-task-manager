@@ -9,13 +9,13 @@
     </div>
 
     <div class="tasks-controls">
+        <app-dashboard-tasks-header-filter [filter]="filter()" (filterChange)="setFilter($event)" />
+
+        <app-dashboard-tasks-header-sort [sortBy]="sortBy()" (sortChange)="setSortBy($event)" />
+
         <app-dashboard-tasks-header-search
             [searchQuery]="searchQuery()"
             (searchQueryChange)="setSearchChange($event)"
         />
-
-        <app-dashboard-tasks-header-filter [filter]="filter()" (filterChange)="setFilter($event)" />
-
-        <app-dashboard-tasks-header-sort [sortBy]="sortBy()" (sortChange)="setSortBy($event)" />
     </div>
 </div>
