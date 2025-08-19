@@ -5,9 +5,10 @@
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "src/main.tsx"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }
