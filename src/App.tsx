@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import TasksPage from './components/TasksPage';
 import CalendarPage from './components/CalendarPage';
 import ProfilePage from './components/ProfilePage';
+import NotFoundPage from './components/NotFoundPage';
 import Onboarding from './components/Onboarding';
 import { Task, UserProfile } from './types';
 
@@ -102,7 +103,7 @@ function App() {
                 path="/profile" 
                 element={<ProfilePage userProfile={userProfile} onUpdateProfile={updateUserProfile} onStartOnboarding={startOnboarding} />} 
               />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </AnimatePresence>
         </main>
