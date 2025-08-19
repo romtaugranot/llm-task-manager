@@ -1,9 +1,18 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, CheckSquare, Calendar, User } from 'lucide-react';
+import { Home, CheckSquare, Calendar, User, LogOut } from 'lucide-react';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+  user?: {
+    name: string;
+    picture: string;
+  };
+  onLogout?: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ user, onLogout }) => {
+
   const location = useLocation();
   
   const navItems = [
@@ -23,7 +32,8 @@ const Navigation: React.FC = () => {
             </h1>
           </div>
           
-          <div className="flex space-x-1">
+          <div className="flex items-center space-x-4">
+            <div className="flex space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -59,6 +69,34 @@ const Navigation: React.FC = () => {
                 </Link>
               );
             })}
+            </div>
+            
+            {/* User Profile & Logout */}
+            {user && (
+              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={user.picture}
+                    alt={user.name}
+                    className="w-8 h-8 rounded-full border-2 border-gray-200"
+                  />
+                  <span className="text-sm font-medium text-gray-700 hidden sm:block">
+                    {user.name}
+                  </span>
+                </div>
+                {onLogout && (
+                  <motion.button
+                    onClick={onLogout}
+                    className="p-2 text-gray-500 hover:text-red-600 rounded-lg hover:bg-red-50"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Logout"
+                  >
+                    <LogOut size={18} />
+                  </motion.button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -9,6 +9,13 @@ export interface Task {
   createdAt: Date;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  picture: string;
+}
+
 export interface UserProfile {
   name: string;
   workHours: {

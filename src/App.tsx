@@ -8,17 +8,20 @@ import CalendarPage from './components/CalendarPage';
 import ProfilePage from './components/ProfilePage';
 import NotFoundPage from './components/NotFoundPage';
 import Onboarding from './components/Onboarding';
-import { Task, UserProfile } from './types';
+import LoginPage from './components/LoginPage';
+import { Task, UserProfile, User } from './types';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     // Load data from localStorage
     const savedTasks = localStorage.getItem('taskmanager-tasks');
     const savedProfile = localStorage.getItem('taskmanager-profile');
+    const savedUser = localStorage.getItem('taskmanager-user');
     
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
@@ -26,6 +29,12 @@ function App() {
     
     if (savedProfile) {
       setUserProfile(JSON.parse(savedProfile));
+    } else {
+      setShowOnboarding(true);
+    }
+    
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
     } else {
       setShowOnboarding(true);
     }
@@ -40,6 +49,12 @@ function App() {
       localStorage.setItem('taskmanager-profile', JSON.stringify(userProfile));
     }
   }, [userProfile]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('taskmanager-user', JSON.stringify(user));
+    }
+  }, [user]);
 
   const addTask = (task: Omit<Task, 'id' | 'createdAt'>) => {
     const newTask: Task = {
@@ -60,6 +75,14 @@ function App() {
     setTasks(prev => prev.filter(task => task.id !== id));
   };
 
+  const handleLogin = (userData: User) => {
+    setUser(userData);
+    // If user doesn't have a profile, show onboarding
+    if (!userProfile) {
+      setShowOnboarding(true);
+    }
+  };
+
   const completeOnboarding = (profile: UserProfile) => {
     setUserProfile(profile);
     setShowOnboarding(false);
@@ -73,6 +96,20 @@ function App() {
     setShowOnboarding(true);
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    setUserProfile(null);
+    setTasks([]);
+    localStorage.removeItem('taskmanager-user');
+    localStorage.removeItem('taskmanager-profile');
+    localStorage.removeItem('taskmanager-tasks');
+  };
+
+  // Show login page if user is not authenticated
+  if (!user) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
+
   if (showOnboarding) {
     return <Onboarding onComplete={completeOnboarding} />;
   }
@@ -80,7 +117,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        <Navigation user={user} onLogout={handleLogout} />
         <main className="pt-16">
           <AnimatePresence mode="wait">
             <Routes>
