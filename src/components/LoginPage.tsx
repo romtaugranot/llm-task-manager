@@ -56,7 +56,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         
         {/* Left Side - Branding & Features */}
         <motion.div
-          className="text-center lg:text-left order-2 lg:order-1"
+          className="text-center order-2 lg:order-1"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
