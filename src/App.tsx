@@ -100,6 +100,7 @@ function App() {
     setUser(null);
     setUserProfile(null);
     setTasks([]);
+    setShowOnboarding(false);
     localStorage.removeItem('taskmanager-user');
     localStorage.removeItem('taskmanager-profile');
     localStorage.removeItem('taskmanager-tasks');
