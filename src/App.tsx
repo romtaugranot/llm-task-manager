@@ -112,7 +112,7 @@ function App() {
   }
 
   if (showOnboarding) {
-    return <Onboarding onComplete={completeOnboarding} />;
+    return <Onboarding onComplete={completeOnboarding} user={user} />;
   }
 
   return (

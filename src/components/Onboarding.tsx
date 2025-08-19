@@ -5,12 +5,16 @@ import { UserProfile } from '../types';
 
 interface OnboardingProps {
   onComplete: (profile: UserProfile) => void;
+  user?: {
+    name: string;
+    email: string;
+  } | null;
 }
 
-const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
+const Onboarding: React.FC<OnboardingProps> = ({ onComplete, user }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    name: '',
+    name: user?.name || '',
     workStart: '09:00',
     workEnd: '17:00',
     priorities: [] as string[],
