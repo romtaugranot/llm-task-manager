@@ -56,7 +56,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         
         {/* Left Side - Branding & Features */}
         <motion.div
-          className="text-center order-2 lg:order-1"
+          className="text-center lg:text-left order-2 lg:order-1"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -86,7 +86,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
-                className="flex items-start space-x-3 lg:space-x-4"
+                className="flex items-start space-x-3 lg:space-x-4 text-left"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
@@ -94,7 +94,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <div className="flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                   <feature.icon size={20} className="text-white lg:w-6 lg:h-6" />
                 </div>
-                <div>
+                <div className="text-left">
                   <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-1">{feature.title}</h3>
                   <p className="text-sm lg:text-base text-gray-600">{feature.description}</p>
                 </div>
