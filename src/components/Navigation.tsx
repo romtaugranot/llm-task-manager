@@ -1,18 +1,16 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home, CheckSquare, Calendar, User } from 'lucide-react';
 
-interface NavigationProps {
-  currentPage: string;
-  onPageChange: (page: 'dashboard' | 'tasks' | 'calendar' | 'profile') => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) => {
+const Navigation: React.FC = () => {
+  const location = useLocation();
+  
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: Home },
-    { id: 'tasks', label: 'Tasks', icon: CheckSquare },
-    { id: 'calendar', label: 'Calendar', icon: Calendar },
-    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/' },
+    { id: 'tasks', label: 'Tasks', icon: CheckSquare, path: '/tasks' },
+    { id: 'calendar', label: 'Calendar', icon: Calendar, path: '/calendar' },
+    { id: 'profile', label: 'Profile', icon: User, path: '/profile' },
   ];
 
   return (
@@ -28,33 +26,36 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
           <div className="flex space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = currentPage === item.id;
+              const isActive = location.pathname === item.path;
               
               return (
-                <motion.button
+                <Link
                   key={item.id}
-                  onClick={() => onPageChange(item.id as any)}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'text-blue-600'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  to={item.path}
                 >
-                  <div className="flex items-center space-x-2">
-                    <Icon size={18} />
-                    <span>{item.label}</span>
-                  </div>
-                  
-                  {isActive && (
-                    <motion.div
-                      className="absolute inset-0 bg-blue-50 rounded-lg -z-10"
-                      layoutId="activeTab"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </motion.button>
+                  <motion.div
+                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'text-blue-600'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Icon size={18} />
+                      <span>{item.label}</span>
+                    </div>
+                    
+                    {isActive && (
+                      <motion.div
+                        className="absolute inset-0 bg-blue-50 rounded-lg -z-10"
+                        layoutId="activeTab"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </motion.div>
+                </Link>
               );
             })}
           </div>
