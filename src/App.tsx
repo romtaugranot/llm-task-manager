@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Dashboard from './components/Dashboard';
@@ -77,7 +77,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="pt-16">
@@ -107,7 +107,7 @@ function App() {
           </AnimatePresence>
         </main>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

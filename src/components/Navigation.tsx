@@ -32,6 +32,7 @@ const Navigation: React.FC = () => {
                 <Link
                   key={item.id}
                   to={item.path}
+                  className="block"
                 >
                   <motion.div
                     className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
